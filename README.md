@@ -1,5 +1,11 @@
 # Sitter — Spaced Repetition for Kunnskap som Skal Sitte
 
+> **Status: Alpha.** Sitter er i aktiv utvikling og testes med ekte brukere (barn + foreldre). Beta-motoren (Rune Attention) holdes privat. Vi er ærlige om modenhet: alt som er her, er testet — men forvent endringer.
+
+[![CI](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml/badge.svg)](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Tests](https://img.shields.io/badge/tests-109%20passing-brightgreen)]()
+
 En statisk, lokal-først læringsapp for varig recall, bygget for barn og familier:
 
 - **Sitter (elev)**: en mobilflyt for 4. klasse, der et barn øver daglig uten å måtte skrive.
@@ -28,6 +34,40 @@ Ingen installasjon, ingen pålogging — åpne på mobil eller nettbrett og prø
 - **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (109 tester).
 - **Lokal-først med migrering**: egne localStorage-nøkler per app, data-migrering ved første åpning, backup av siste gyldige state.
 - **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
+
+---
+
+## Arkitektur
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Sitter (elev-MVP)                      │
+│  sitter.html → sitter-app.js → sitter-mechanics.js      │
+│  kortpakker: sitter-curriculum*.js                       │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────┐
+│               retention-core.js (DOM-fri)                │
+│  scheduler · mastery-score · capture-gate · policy       │
+│  ← testbar uten nettleser (node --test)                  │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+┌──────────────────────────▼──────────────────────────────┐
+│              localStorage-vault (lokal-først)            │
+│  per-app nøkler · migrering · backup · eksport/import    │
+└─────────────────────────────────────────────────────────┘
+```
+
+Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Ingen nettverkskall, ingen server, ingen sporbarhet utenfor enheten.
+
+---
+
+## Roadmap
+
+- **Nå (Alpha)**: 4. klasse, validerte kortpakker, familiegame og practice-pilot i aktiv testing.
+- **Kort sikt**: flere trinn (5.–7. klasse) med validerte kortpakker; bedre dataanalyse for foreldre.
+- **Lenger sikt**: kontobasert synkronisering på tvers av enheter (frivillig, opt-in), og en åpen API for læringsmål-innhold.
+- **Beta (privat)**: den modne recall-motoren med full R/S/D-modell, mastery-spor og innsikter — holdes privat per design.
 
 ---
 

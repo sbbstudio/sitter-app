@@ -1,0 +1,1146 @@
+{
+  "$schema": "../../../schemas/question-pack.schema.json",
+  "packId": "no.casper.family-practice.g4.v1",
+  "version": 1,
+  "title": "Er du smartere enn barnet ditt?",
+  "experienceName": "Casper mot de voksne",
+  "promise": "Samme læringsmål. Ulik utfordring. Hele familien lærer sammen.",
+  "locale": "nb-NO",
+  "jurisdiction": "NO",
+  "targetGrade": 4,
+  "schoolYear": "2026-2027",
+  "validFrom": "2026-08-01",
+  "releaseStatus": "review",
+  "essentialCollection": "no.casper.grade4.family-practice.v1",
+  "essentialIds": [
+    "no-mat-g4-delingsdivisjon",
+    "no-mat-g4-regnearter-sammenheng",
+    "no-mat-g4-overslag-modellering",
+    "no-mat-g4-figurer-egenskaper",
+    "no-mat-g4-volum-enhetskuber",
+    "no-mat-g4-monster-algoritmer",
+    "no-nor-g4-leseforstaelse",
+    "no-nor-g4-fakta-mening",
+    "no-nor-g4-tegnsetting",
+    "no-nor-g4-ordklasser",
+    "no-nor-g4-boying-setningsbygging",
+    "no-nor-g4-spraktilpasning",
+    "no-eng-g4-ordforrad-kontekst",
+    "no-eng-g4-hoflige-fraser",
+    "no-eng-g4-lydmonster",
+    "no-eng-g4-ordklasser",
+    "no-eng-g4-ordstilling",
+    "no-eng-g4-tekstforstaelse",
+    "no-nat-g4-hypotese-data",
+    "no-nat-g4-systemer-materialer",
+    "no-nat-g4-energi-temperatur",
+    "no-nat-g4-tilpasning-baerekraft",
+    "no-nat-g4-vannets-kretslop",
+    "no-nat-g4-kropp-helse",
+    "no-sam-g4-kilder",
+    "no-sam-g4-fortid-natid",
+    "no-sam-g4-kart-landskap",
+    "no-sam-g4-rettigheter-demokrati",
+    "no-sam-g4-samisk-kultur",
+    "no-sam-g4-personvern-konflikt"
+  ],
+  "subjects": ["Matematikk", "Norsk", "Engelsk", "Naturfag", "Samfunnsfag"],
+  "contentCounts": {
+    "families": 30,
+    "coreQuestions": 60,
+    "familiesPerSubject": 6
+  },
+  "rotationPolicy": {
+    "familiesPerMatch": 4,
+    "estimatedMinutes": "8-12",
+    "avoidRepeatWithinMatches": 3
+  },
+  "difficultyTargets": {
+    "childExpectedSuccess": { "min": 0.7, "max": 0.85 },
+    "adultExpectedSuccess": { "min": 0.45, "max": 0.65 },
+    "adultRule": "Same fourth-grade essential, but more application, comparison or linked steps. Never higher-grade trivia."
+  },
+  "memoryPolicy": {
+    "learnerOwner": "casper",
+    "adultWritesLearnerMemory": false,
+    "stealWritesLearnerMemory": false,
+    "rawAnswersStored": false,
+    "audioStored": false,
+    "transcriptsStored": false,
+    "disputedAnswerWritesLearnerMemory": false
+  },
+  "srsPolicy": {
+    "childUnaidedCorrect": "good",
+    "childCorrectAfterHelp": "hard",
+    "childWrongOrReveal": "again",
+    "comebackCorrect": { "grade": "good", "intervalCap": "1h" },
+    "adultResult": "match_score_only"
+  },
+  "scoringPolicy": {
+    "childUnaidedCorrect": 3,
+    "childHelpTaken": 1,
+    "childComebackAvailable": 2,
+    "childComebackAfterHelpCorrect": 2,
+    "childComebackAfterMissCorrect": 3,
+    "adultCorrect": 3,
+    "successfulSteal": 2,
+    "wrong": 0,
+    "negativePoints": false,
+    "timeBonus": false
+  },
+  "stealPolicy": {
+    "adultAnswersFirst": true,
+    "childMayPass": true,
+    "lockBothAnswersBeforeReveal": true,
+    "revealAfterBothLocked": true,
+    "addRelatedChildCardToComebackOnAttempt": true
+  },
+  "safetyPolicy": {
+    "intelligenceJudgmentInFeedback": false,
+    "publicRanking": false,
+    "negativeScore": false,
+    "hintAndPassAlwaysAvailable": true,
+    "adultCanPressureChildToSteal": false,
+    "familyGoal": "Samle kunnskapspoeng sammen og oppdag hva dere kan forklare for hverandre."
+  },
+  "pedagogyReview": {
+    "status": "reviewed_for_pilot",
+    "reviewedAt": "2026-07-15",
+    "lens": "Finnish formative-assessment principles",
+    "principles": [
+      "Tydelig kobling mellom oppgave og læringsmål.",
+      "Muntlig tilgjengelighet og én hovedoppgave om gangen.",
+      "Begrepsforståelse framfor lurefeller eller kulturavhengig trivia.",
+      "Beskrivende feedback som viser neste steg uten å rangere personer.",
+      "Rettferdig vurdering med synlig fasit eller eksplisitt rubrikk."
+    ],
+    "humanPilotStillRequired": true
+  },
+  "questionFamilies": [
+    {
+      "familyId": "fam-mat-delingsdivisjon",
+      "essentialId": "no-mat-g4-delingsdivisjon",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-01-child",
+          "role": "child_core",
+          "memoryOwner": "casper",
+          "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "24 boller deles likt på 6 barn. Hvor mange boller får hvert barn?",
+          "acceptedAnswers": ["4", "fire"],
+          "feedback": "Ja. 24 delt på 6 er 4, så hvert barn får fire boller."
+        },
+        "adult_challenge": {
+          "id": "q-mat-01-adult",
+          "role": "adult_challenge",
+          "memoryOwner": null,
+          "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "two_linked_steps", "sameGrade": true, "childStealable": true },
+          "prompt": "Seks brett har 24 boller på hvert brett. Alle bollene deles likt på 8 familier. Hvor mange får hver familie?",
+          "acceptedAnswers": ["18", "atten"],
+          "rubric": ["Finner 144 boller til sammen.", "Deler 144 på 8 og får 18."],
+          "feedback": "Riktig svar er 18: 6 ganger 24 er 144, og 144 delt på 8 er 18."
+        },
+        "help": {
+          "id": "q-mat-01-help",
+          "role": "help",
+          "memoryOwner": "casper",
+          "answerMode": "oral_choice",
+          "prompt": "24 boller deles på 6 barn. Er svaret 4, 6 eller 18?",
+          "choices": [
+            { "label": "4", "isCorrect": true },
+            { "label": "6", "isCorrect": false },
+            { "label": "18", "isCorrect": false }
+          ],
+          "feedback": "Fire er riktig fordi 6 ganger 4 er 24."
+        },
+        "comeback": {
+          "id": "q-mat-01-comeback",
+          "role": "comeback",
+          "memoryOwner": "casper",
+          "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "35 epler deles likt på 5 barn. Hvor mange får hvert barn?",
+          "acceptedAnswers": ["7", "sju", "syv"],
+          "feedback": "Ja. 35 delt på 5 er 7."
+        }
+      }
+    },
+    {
+      "familyId": "fam-mat-regnearter",
+      "essentialId": "no-mat-g4-regnearter-sammenheng",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-02-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "Hva er 28 delt på 4?", "acceptedAnswers": ["7", "sju", "syv"],
+          "feedback": "Ja. 28 delt på 4 er 7, og 7 ganger 4 er 28."
+        },
+        "adult_challenge": {
+          "id": "q-mat-02-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "answer_and_verify", "sameGrade": true, "childStealable": true },
+          "prompt": "Et ukjent tall ganger 6 er 42. Hva er tallet, og hvilket divisjonsstykke kontrollerer svaret?",
+          "acceptedAnswers": ["7, fordi 42 delt på 6 er 7", "sju; 42 delt på 6 er sju"],
+          "rubric": ["Svarer 7.", "Bruker 42 delt på 6 er 7 som kontroll."],
+          "feedback": "Tallet er 7. Kontroll: 42 delt på 6 er 7."
+        },
+        "help": {
+          "id": "q-mat-02-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva er 28 delt på 4: 6, 7 eller 8?",
+          "choices": [{ "label": "6", "isCorrect": false }, { "label": "7", "isCorrect": true }, { "label": "8", "isCorrect": false }],
+          "feedback": "Sju er riktig fordi 7 ganger 4 er 28."
+        },
+        "comeback": {
+          "id": "q-mat-02-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "Hva er 45 delt på 5?", "acceptedAnswers": ["9", "ni"], "feedback": "Ja. 45 delt på 5 er 9."
+        }
+      }
+    },
+    {
+      "familyId": "fam-mat-overslag",
+      "essentialId": "no-mat-g4-overslag-modellering",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-03-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "Er 198 pluss 203 nærmest 300, 400 eller 500?", "acceptedAnswers": ["400", "fire hundre"],
+          "feedback": "Ja. 198 er omtrent 200 og 203 er omtrent 200, til sammen omtrent 400."
+        },
+        "adult_challenge": {
+          "id": "q-mat-03-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "estimate_and_justify", "sameGrade": true, "childStealable": true },
+          "prompt": "En buss har plass til 48 personer. Er 350 et rimelig overslag for hvor mange 7 busser har plass til? Forklar kort.",
+          "acceptedAnswers": ["ja, fordi 48 er omtrent 50 og 7 ganger 50 er 350"],
+          "rubric": ["Svarer ja.", "Begrunner med omtrent 50 ganger 7."],
+          "feedback": "Ja. 48 er nær 50, og 7 ganger 50 er 350."
+        },
+        "help": {
+          "id": "q-mat-03-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "198 er omtrent 200 og 203 er omtrent 200. Blir summen omtrent 300, 400 eller 500?",
+          "choices": [{ "label": "300", "isCorrect": false }, { "label": "400", "isCorrect": true }, { "label": "500", "isCorrect": false }],
+          "feedback": "Omtrent 200 pluss omtrent 200 er omtrent 400."
+        },
+        "comeback": {
+          "id": "q-mat-03-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "one_step" },
+          "prompt": "Er 299 pluss 302 nærmest 500, 600 eller 700?", "acceptedAnswers": ["600", "seks hundre"],
+          "feedback": "Ja. Begge tallene er omtrent 300, så summen er omtrent 600."
+        }
+      }
+    },
+    {
+      "familyId": "fam-mat-figurer",
+      "essentialId": "no-mat-g4-figurer-egenskaper",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-04-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_from_property" },
+          "prompt": "Hvilken tredimensjonal figur har seks kvadratiske flater?", "acceptedAnswers": ["kube", "en kube"],
+          "feedback": "Riktig. En kube har seks kvadratiske flater."
+        },
+        "adult_challenge": {
+          "id": "q-mat-04-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "combine_properties", "sameGrade": true, "childStealable": true },
+          "prompt": "Hvilken tredimensjonal figur har to trekantede flater og tre rektangulære flater?",
+          "acceptedAnswers": ["trekantet prisme", "et trekantet prisme"],
+          "feedback": "Det er et trekantet prisme: to trekanter og tre rektangler."
+        },
+        "help": {
+          "id": "q-mat-04-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Har figuren med seks kvadratiske flater navnet kube, sylinder eller kule?",
+          "choices": [{ "label": "Kube", "isCorrect": true }, { "label": "Sylinder", "isCorrect": false }, { "label": "Kule", "isCorrect": false }],
+          "feedback": "Kube er riktig. Alle de seks flatene er kvadrater."
+        },
+        "comeback": {
+          "id": "q-mat-04-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_from_property" },
+          "prompt": "Hvilken figur har to runde flater og én krum sideflate?", "acceptedAnswers": ["sylinder", "en sylinder"],
+          "feedback": "Riktig. Det er en sylinder."
+        }
+      }
+    },
+    {
+      "familyId": "fam-mat-volum",
+      "essentialId": "no-mat-g4-volum-enhetskuber",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-05-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "count_structured_units" },
+          "prompt": "Et lag med kuber har 3 rader og 4 kuber i hver rad. Hvor mange enhetskuber er det?",
+          "acceptedAnswers": ["12", "tolv"], "feedback": "Ja. 3 rader ganger 4 kuber er 12 enhetskuber."
+        },
+        "adult_challenge": {
+          "id": "q-mat-05-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "three_dimensions", "sameGrade": true, "childStealable": true },
+          "prompt": "En kloss er 4 enhetskuber lang, 3 bred og 2 høy. Hvor mange enhetskuber består klossen av?",
+          "acceptedAnswers": ["24", "tjuefire"],
+          "rubric": ["Finner 12 kuber i hvert lag.", "Bruker to lag og får 24."],
+          "feedback": "Riktig svar er 24: 4 ganger 3 ganger 2."
+        },
+        "help": {
+          "id": "q-mat-05-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "3 rader med 4 kuber i hver blir 7, 12 eller 16 kuber?",
+          "choices": [{ "label": "7", "isCorrect": false }, { "label": "12", "isCorrect": true }, { "label": "16", "isCorrect": false }],
+          "feedback": "Tolv er riktig: 4 pluss 4 pluss 4."
+        },
+        "comeback": {
+          "id": "q-mat-05-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "count_structured_units" },
+          "prompt": "To lag har 5 rader med 2 kuber i hver rad. Hvor mange kuber er det til sammen?",
+          "acceptedAnswers": ["20", "tjue"], "feedback": "Ja. Hvert lag har 10 kuber, og to lag har 20."
+        }
+      }
+    },
+    {
+      "familyId": "fam-mat-monster",
+      "essentialId": "no-mat-g4-monster-algoritmer",
+      "subject": "Matematikk",
+      "variants": {
+        "child_core": {
+          "id": "q-mat-06-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "continue_pattern" },
+          "prompt": "Tallmønsteret er 3, 6, 9. Hva er neste tall?", "acceptedAnswers": ["12", "tolv"],
+          "feedback": "Ja. Mønsteret øker med 3 hver gang, så neste tall er 12."
+        },
+        "adult_challenge": {
+          "id": "q-mat-06-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "follow_algorithm", "sameGrade": true, "childStealable": true },
+          "prompt": "Start på 2. Legg til 3 to ganger, og doble så svaret. Hvilket tall ender du på?",
+          "acceptedAnswers": ["16", "seksten"],
+          "rubric": ["Følger 2, 5, 8.", "Dobler 8 og får 16."],
+          "feedback": "Svaret er 16: 2 blir 5, så 8, og dobbelt av 8 er 16."
+        },
+        "help": {
+          "id": "q-mat-06-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Mønsteret øker med 3. Etter 3, 6, 9 kommer 10, 11 eller 12?",
+          "choices": [{ "label": "10", "isCorrect": false }, { "label": "11", "isCorrect": false }, { "label": "12", "isCorrect": true }],
+          "feedback": "Tolv er riktig fordi 9 pluss 3 er 12."
+        },
+        "comeback": {
+          "id": "q-mat-06-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "follow_two_steps" },
+          "prompt": "Start på 4. Doble tallet og legg så til 3. Hvor ender du?", "acceptedAnswers": ["11", "elleve"],
+          "feedback": "Ja. Dobbelt av 4 er 8, og 8 pluss 3 er 11."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-leseforstaelse",
+      "essentialId": "no-nor-g4-leseforstaelse",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-01-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "retrieve_explicit" },
+          "prompt": "Hør teksten: Mina tok på seg støvler fordi det regnet. Hva tok Mina på seg?",
+          "acceptedAnswers": ["støvler", "hun tok på seg støvler"], "feedback": "Riktig. Teksten sier at Mina tok på seg støvler."
+        },
+        "adult_challenge": {
+          "id": "q-nor-01-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "infer_from_two_clues", "sameGrade": true, "childStealable": true },
+          "prompt": "Hør teksten: Mina tok på seg støvler og lot solbrillene ligge hjemme. Hva kan vi slutte om været, og hvilket spor støtter svaret?",
+          "acceptedAnswers": ["det regnet; støvlene og solbrillene som ble hjemme", "regnvær, fordi hun tok støvler og lot solbrillene ligge"],
+          "rubric": ["Sier at det regnet eller var vått vær.", "Viser til minst ett spor i teksten."],
+          "feedback": "Det var trolig regnvær. Støvlene og solbrillene som ble igjen, er sporene."
+        },
+        "help": {
+          "id": "q-nor-01-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Tok Mina på seg støvler, sandaler eller skøyter?",
+          "choices": [{ "label": "Støvler", "isCorrect": true }, { "label": "Sandaler", "isCorrect": false }, { "label": "Skøyter", "isCorrect": false }],
+          "feedback": "Støvler er riktig. Det står direkte i teksten."
+        },
+        "comeback": {
+          "id": "q-nor-01-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "retrieve_explicit" },
+          "prompt": "Hør teksten: Leo la matpakken i den blå sekken. Hvilken farge hadde sekken?",
+          "acceptedAnswers": ["blå", "den var blå"], "feedback": "Ja. Sekken var blå."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-fakta-mening",
+      "essentialId": "no-nor-g4-fakta-mening",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-02-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "classify" },
+          "prompt": "Hvilken setning kan kontrolleres: En uke har sju dager, eller lørdag er ukas beste dag?",
+          "acceptedAnswers": ["en uke har sju dager"], "feedback": "Ja. Antall dager kan kontrolleres. Hva som er ukas beste dag, er en mening."
+        },
+        "adult_challenge": {
+          "id": "q-nor-02-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "separate_claims", "sameGrade": true, "childStealable": true },
+          "prompt": "Setningen er: Filmen varer i 92 minutter og er årets beste film. Hvilken del er fakta, og hvilken del er mening?",
+          "acceptedAnswers": ["92 minutter er fakta; årets beste er mening"],
+          "rubric": ["Klassifiserer varigheten som fakta.", "Klassifiserer 'årets beste' som mening."],
+          "feedback": "Varigheten kan kontrolleres og er fakta. 'Årets beste' er en vurdering."
+        },
+        "help": {
+          "id": "q-nor-02-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva kan kontrolleres: En uke har sju dager, lørdag er best, eller sommer er finest?",
+          "choices": [{ "label": "En uke har sju dager", "isCorrect": true }, { "label": "Lørdag er best", "isCorrect": false }, { "label": "Sommer er finest", "isCorrect": false }],
+          "feedback": "At en uke har sju dager, kan kontrolleres."
+        },
+        "comeback": {
+          "id": "q-nor-02-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "classify" },
+          "prompt": "Er setningen 'Oslo er Norges hovedstad' fakta eller mening?",
+          "acceptedAnswers": ["fakta", "det er fakta"], "feedback": "Riktig. Det kan kontrolleres i en pålitelig kilde."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-tegnsetting",
+      "essentialId": "no-nor-g4-tegnsetting",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-03-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_punctuation" },
+          "prompt": "Hvilket tegn skal stå etter setningen 'Hvor bor du': punktum, spørsmålstegn eller utropstegn?",
+          "acceptedAnswers": ["spørsmålstegn"], "feedback": "Riktig. Setningen spør om noe og får spørsmålstegn."
+        },
+        "adult_challenge": {
+          "id": "q-nor-03-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "punctuate_two_sentences", "sameGrade": true, "childStealable": true },
+          "prompt": "Velg tegn til begge setningene. Først roper noen en advarsel: 'Pass deg'. Så spør de: 'Når begynner filmen'.",
+          "acceptedAnswers": ["utropstegn etter pass deg og spørsmålstegn etter når begynner filmen"],
+          "rubric": ["Velger utropstegn etter advarselen.", "Velger spørsmålstegn etter spørsmålet."],
+          "feedback": "'Pass deg!' får utropstegn. 'Når begynner filmen?' får spørsmålstegn."
+        },
+        "help": {
+          "id": "q-nor-03-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "'Hvor bor du' er et spørsmål. Skal det ha punktum, spørsmålstegn eller utropstegn?",
+          "choices": [{ "label": "Punktum", "isCorrect": false }, { "label": "Spørsmålstegn", "isCorrect": true }, { "label": "Utropstegn", "isCorrect": false }],
+          "feedback": "Spørsmålstegn viser at setningen spør om noe."
+        },
+        "comeback": {
+          "id": "q-nor-03-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_punctuation" },
+          "prompt": "Noen roper begeistret: 'Så fantastisk'. Hvilket tegn passer: punktum, spørsmålstegn eller utropstegn?",
+          "acceptedAnswers": ["utropstegn"], "feedback": "Ja. Utropstegn passer til det sterke utropet."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-ordklasser",
+      "essentialId": "no-nor-g4-ordklasser",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-04-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_word_class" },
+          "prompt": "Hvilket ord er verbet i setningen 'Hunden løper hjem'?",
+          "acceptedAnswers": ["løper"], "feedback": "Ja. 'Løper' er verbet fordi det forteller hva hunden gjør."
+        },
+        "adult_challenge": {
+          "id": "q-nor-04-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "identify_three_classes", "sameGrade": true, "childStealable": true },
+          "prompt": "Finn adjektivet, substantivet og verbet i setningen 'Den raske hunden løper'.",
+          "acceptedAnswers": ["raske er adjektiv, hunden er substantiv, løper er verb"],
+          "rubric": ["Adjektiv: raske.", "Substantiv: hunden.", "Verb: løper."],
+          "feedback": "'Raske' beskriver, 'hunden' er tingen, og 'løper' er handlingen."
+        },
+        "help": {
+          "id": "q-nor-04-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "I 'Hunden løper hjem', er verbet hunden, løper eller hjem?",
+          "choices": [{ "label": "Hunden", "isCorrect": false }, { "label": "Løper", "isCorrect": true }, { "label": "Hjem", "isCorrect": false }],
+          "feedback": "'Løper' er verbet fordi det er en handling."
+        },
+        "comeback": {
+          "id": "q-nor-04-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_word_class" },
+          "prompt": "Hvilket ord er adjektivet i 'et rødt hus'?", "acceptedAnswers": ["rødt"],
+          "feedback": "Riktig. 'Rødt' beskriver huset og er et adjektiv."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-boying",
+      "essentialId": "no-nor-g4-boying-setningsbygging",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-05-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "inflect_one_word" },
+          "prompt": "Hvordan sier vi verbet 'å hoppe' når det skjedde i går?",
+          "acceptedAnswers": ["hoppet", "jeg hoppet"], "feedback": "Ja. I fortid sier vi 'hoppet'."
+        },
+        "adult_challenge": {
+          "id": "q-nor-05-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "repair_sentence", "sameGrade": true, "childStealable": true },
+          "prompt": "Rett setningen slik at tiden stemmer: 'I går går vi til skolen.'",
+          "acceptedAnswers": ["i går gikk vi til skolen"],
+          "rubric": ["Endrer går til gikk.", "Beholder en forståelig setningsrekkefølge."],
+          "feedback": "Riktig setning er: 'I går gikk vi til skolen.'"
+        },
+        "help": {
+          "id": "q-nor-05-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "I går: hopper, hoppet eller skal hoppe?",
+          "choices": [{ "label": "Hopper", "isCorrect": false }, { "label": "Hoppet", "isCorrect": true }, { "label": "Skal hoppe", "isCorrect": false }],
+          "feedback": "'Hoppet' viser at det allerede skjedde."
+        },
+        "comeback": {
+          "id": "q-nor-05-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "inflect_one_word" },
+          "prompt": "Hva er flertall av 'en bok'?", "acceptedAnswers": ["bøker"],
+          "feedback": "Ja. Én bok, flere bøker."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nor-spraktilpasning",
+      "essentialId": "no-nor-g4-spraktilpasning",
+      "subject": "Norsk",
+      "variants": {
+        "child_core": {
+          "id": "q-nor-06-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_polite_phrase" },
+          "prompt": "Hvordan kan du spørre læreren høflig om hjelp?",
+          "acceptedAnswers": ["kan du hjelpe meg, vær så snill", "unnskyld, kan du hjelpe meg"],
+          "rubric": ["Inneholder en tydelig forespørsel.", "Har en høflig formulering."],
+          "feedback": "Et godt svar er: 'Kan du hjelpe meg, vær så snill?'"
+        },
+        "adult_challenge": {
+          "id": "q-nor-06-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "adapt_message", "sameGrade": true, "childStealable": true },
+          "prompt": "Du vil forlenge et boklån. Hvordan kan du spørre bibliotekaren tydelig og høflig?",
+          "acceptedAnswers": ["kan jeg få forlenge lånet på boka, vær så snill", "hei, er det mulig å forlenge lånet på boka"],
+          "rubric": ["Gjør ønsket tydelig.", "Bruker en høflig henvendelse til bibliotekaren."],
+          "feedback": "For eksempel: 'Hei, er det mulig å forlenge lånet på boka?'"
+        },
+        "help": {
+          "id": "q-nor-06-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva passer best til læreren: 'Hjelp meg nå', 'Kan du hjelpe meg, vær så snill' eller 'Du må hjelpe'?",
+          "choices": [{ "label": "Hjelp meg nå", "isCorrect": false }, { "label": "Kan du hjelpe meg, vær så snill", "isCorrect": true }, { "label": "Du må hjelpe", "isCorrect": false }],
+          "feedback": "Den midterste er tydelig og høflig."
+        },
+        "comeback": {
+          "id": "q-nor-06-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "make_polite" },
+          "prompt": "Gjør 'Gi meg boka' til et høflig spørsmål.",
+          "acceptedAnswers": ["kan jeg få boka, vær så snill", "kan du gi meg boka, vær så snill"],
+          "feedback": "Fint. Et høflig spørsmål kan være: 'Kan jeg få boka, vær så snill?'"
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-ordforrad",
+      "essentialId": "no-eng-g4-ordforrad-kontekst",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-01-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "word_in_context" },
+          "prompt": "The soup is hot. Hva betyr 'hot' her?", "acceptedAnswers": ["varm", "varmt"],
+          "feedback": "Riktig. 'Hot' betyr varm i denne setningen."
+        },
+        "adult_challenge": {
+          "id": "q-eng-01-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "infer_word_from_context", "sameGrade": true, "childStealable": true },
+          "prompt": "The giant is enormous — much bigger than the house. What does 'enormous' mean?",
+          "acceptedAnswers": ["very big", "huge", "veldig stor", "enorm"],
+          "feedback": "'Enormous' means very big or huge."
+        },
+        "help": {
+          "id": "q-eng-01-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "The soup is hot. Betyr 'hot' kald, varm eller tom?",
+          "choices": [{ "label": "Kald", "isCorrect": false }, { "label": "Varm", "isCorrect": true }, { "label": "Tom", "isCorrect": false }],
+          "feedback": "'Hot' betyr varm her."
+        },
+        "comeback": {
+          "id": "q-eng-01-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "word_in_context" },
+          "prompt": "The mouse is tiny. Is 'tiny' very small or very large?",
+          "acceptedAnswers": ["very small", "veldig liten", "liten"],
+          "feedback": "Yes. 'Tiny' means very small."
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-hoflige-fraser",
+      "essentialId": "no-eng-g4-hoflige-fraser",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-02-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "complete_phrase" },
+          "prompt": "Complete the polite sentence: Can I have some water, ...?",
+          "acceptedAnswers": ["please"], "feedback": "Yes. 'Please' makes the request polite."
+        },
+        "adult_challenge": {
+          "id": "q-eng-02-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "choose_phrase_for_situation", "sameGrade": true, "childStealable": true },
+          "prompt": "You did not hear what someone said. What polite English sentence can you use?",
+          "acceptedAnswers": ["could you repeat that, please", "can you say that again, please"],
+          "feedback": "A good answer is: 'Could you repeat that, please?'"
+        },
+        "help": {
+          "id": "q-eng-02-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Which word completes the polite request: please, never or yesterday?",
+          "choices": [{ "label": "Please", "isCorrect": true }, { "label": "Never", "isCorrect": false }, { "label": "Yesterday", "isCorrect": false }],
+          "feedback": "'Please' is the polite word."
+        },
+        "comeback": {
+          "id": "q-eng-02-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "respond_politely" },
+          "prompt": "What can you say when someone tells you 'Thank you'?",
+          "acceptedAnswers": ["you're welcome", "you are welcome"], "feedback": "Yes. 'You're welcome' is a polite reply."
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-lydmonster",
+      "essentialId": "no-eng-g4-lydmonster",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-03-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_rhyme" },
+          "prompt": "Which word rhymes with 'cat': hat or sun?", "acceptedAnswers": ["hat"],
+          "feedback": "Yes. 'Cat' and 'hat' have the same ending sound."
+        },
+        "adult_challenge": {
+          "id": "q-eng-03-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "find_odd_sound", "sameGrade": true, "childStealable": true },
+          "prompt": "Which word has a different vowel sound: bike, like or milk?",
+          "acceptedAnswers": ["milk"], "feedback": "'Milk' is different. 'Bike' and 'like' share the long i sound."
+        },
+        "help": {
+          "id": "q-eng-03-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Which word rhymes with cat: hat, book or sun?",
+          "choices": [{ "label": "Hat", "isCorrect": true }, { "label": "Book", "isCorrect": false }, { "label": "Sun", "isCorrect": false }],
+          "feedback": "'Hat' rhymes with 'cat'."
+        },
+        "comeback": {
+          "id": "q-eng-03-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "find_odd_sound" },
+          "prompt": "Which word sounds different at the end: day, play or key?",
+          "acceptedAnswers": ["key"], "feedback": "Yes. 'Day' and 'play' rhyme; 'key' does not."
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-ordklasser",
+      "essentialId": "no-eng-g4-ordklasser",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-04-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_word_class" },
+          "prompt": "Which word is the noun in 'The dog runs'?", "acceptedAnswers": ["dog", "the dog"],
+          "feedback": "Correct. 'Dog' is the noun."
+        },
+        "adult_challenge": {
+          "id": "q-eng-04-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "identify_three_classes", "sameGrade": true, "childStealable": true },
+          "prompt": "Name the adjective, noun and verb in 'The small dog runs fast.'",
+          "acceptedAnswers": ["small is the adjective, dog is the noun, runs is the verb"],
+          "rubric": ["Adjective: small.", "Noun: dog.", "Verb: runs."],
+          "feedback": "'Small' describes, 'dog' names, and 'runs' is the action."
+        },
+        "help": {
+          "id": "q-eng-04-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "In 'The dog runs', which word names the animal: dog, runs or the?",
+          "choices": [{ "label": "Dog", "isCorrect": true }, { "label": "Runs", "isCorrect": false }, { "label": "The", "isCorrect": false }],
+          "feedback": "'Dog' names the animal and is a noun."
+        },
+        "comeback": {
+          "id": "q-eng-04-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_word_class" },
+          "prompt": "Which word is the verb in 'Mia sings loudly'?", "acceptedAnswers": ["sings"],
+          "feedback": "Correct. 'Sings' is the action word."
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-ordstilling",
+      "essentialId": "no-eng-g4-ordstilling",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-05-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "order_three_words" },
+          "prompt": "Put the words in order: I, games, like.", "acceptedAnswers": ["I like games"],
+          "feedback": "Yes: 'I like games.'"
+        },
+        "adult_challenge": {
+          "id": "q-eng-05-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "place_frequency_word", "sameGrade": true, "childStealable": true },
+          "prompt": "Put these words in a natural sentence: usually, I, walk, to school.",
+          "acceptedAnswers": ["I usually walk to school"],
+          "feedback": "Correct: 'I usually walk to school.'"
+        },
+        "help": {
+          "id": "q-eng-05-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Which sentence is correct: 'I like games', 'Like games I' or 'Games I like'?",
+          "choices": [{ "label": "I like games", "isCorrect": true }, { "label": "Like games I", "isCorrect": false }, { "label": "Games I like", "isCorrect": false }],
+          "feedback": "'I like games' has the expected word order."
+        },
+        "comeback": {
+          "id": "q-eng-05-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "order_three_words" },
+          "prompt": "Put the words in order: football, plays, She.", "acceptedAnswers": ["She plays football"],
+          "feedback": "Yes: 'She plays football.'"
+        }
+      }
+    },
+    {
+      "familyId": "fam-eng-tekstforstaelse",
+      "essentialId": "no-eng-g4-tekstforstaelse",
+      "subject": "Engelsk",
+      "variants": {
+        "child_core": {
+          "id": "q-eng-06-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "retrieve_explicit" },
+          "prompt": "Listen: Tom lives in London and walks to school. Where does Tom live?",
+          "acceptedAnswers": ["London", "he lives in London"], "feedback": "Correct. Tom lives in London."
+        },
+        "adult_challenge": {
+          "id": "q-eng-06-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "infer_from_clues", "sameGrade": true, "childStealable": true },
+          "prompt": "Listen: Tom puts an umbrella in his bag. The clouds are dark. Why does he take the umbrella?",
+          "acceptedAnswers": ["because he thinks it will rain", "he expects rain", "fordi det kan begynne å regne"],
+          "rubric": ["Kobler paraply og mørke skyer til forventet regn."],
+          "feedback": "He expects rain; the dark clouds are the clue."
+        },
+        "help": {
+          "id": "q-eng-06-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Does Tom live in London, Oslo or Paris?",
+          "choices": [{ "label": "London", "isCorrect": true }, { "label": "Oslo", "isCorrect": false }, { "label": "Paris", "isCorrect": false }],
+          "feedback": "The text says London."
+        },
+        "comeback": {
+          "id": "q-eng-06-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "retrieve_explicit" },
+          "prompt": "Listen: Maya drinks tea at five o'clock. What does Maya drink?",
+          "acceptedAnswers": ["tea", "she drinks tea"], "feedback": "Correct. Maya drinks tea."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-hypotese-data",
+      "essentialId": "no-nat-g4-hypotese-data",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-01-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_fair_test" },
+          "prompt": "Vi vil teste om is smelter raskere i sol enn i skygge. Hva er mest rettferdig: bruke to like isbiter eller én liten og én stor?",
+          "acceptedAnswers": ["to like isbiter", "like isbiter"],
+          "feedback": "Riktig. Like isbiter gjør at plasseringen er den tydelige forskjellen."
+        },
+        "adult_challenge": {
+          "id": "q-nat-01-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "interpret_data_and_control", "sameGrade": true, "childStealable": true },
+          "prompt": "To like isbiter brukes. I sola smelter den på 8 minutter, i skyggen på 15. Hva støtter dataene, og hva må holdes likt?",
+          "acceptedAnswers": ["is smelter raskere i sola; isbitene må være like store", "sola smelter isen raskere og isbitene må være like"],
+          "rubric": ["Konkluderer at isen smelter raskere i sol.", "Nevner minst én kontroll, som lik størrelse."],
+          "feedback": "Dataene støtter raskere smelting i sol. Isbitenes størrelse må blant annet være lik."
+        },
+        "help": {
+          "id": "q-nat-01-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hvilke isbiter gir den rettferdigste testen: to like, én stor og én liten, eller bare én isbit?",
+          "choices": [{ "label": "To like", "isCorrect": true }, { "label": "Én stor og én liten", "isCorrect": false }, { "label": "Bare én", "isCorrect": false }],
+          "feedback": "To like isbiter gjør sammenligningen mer rettferdig."
+        },
+        "comeback": {
+          "id": "q-nat-01-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "read_simple_data" },
+          "prompt": "En isbit smelter på 6 minutter i sol og 12 minutter i skygge. Hvor smeltet den raskest?",
+          "acceptedAnswers": ["i sola", "sol"], "feedback": "Ja. Seks minutter er kortere tid enn tolv."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-systemer-materialer",
+      "essentialId": "no-nat-g4-systemer-materialer",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-02-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "part_function" },
+          "prompt": "En lommelykt har pære og bryter, men mangler batteri. Kan den lyse, og hvorfor?",
+          "acceptedAnswers": ["nei, den mangler energi fra batteriet", "nei, fordi batteriet mangler"],
+          "feedback": "Riktig. Batteriet gir energien som systemet trenger."
+        },
+        "adult_challenge": {
+          "id": "q-nat-02-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "choose_material_and_explain", "sameGrade": true, "childStealable": true },
+          "prompt": "Du lager den delen av en grytesleiv som hånden skal holde i. Velger du metall eller tre, og hvilken egenskap er viktig?",
+          "acceptedAnswers": ["tre, fordi det leder varme dårligere", "tre fordi håndtaket ikke blir like varmt"],
+          "rubric": ["Velger tre.", "Forklarer at tre leder varme dårligere enn metall."],
+          "feedback": "Tre er et godt valg fordi lite varme går gjennom tre sammenlignet med metall."
+        },
+        "help": {
+          "id": "q-nat-02-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva gir lommelykten energi: batteriet, glasset eller knappen alene?",
+          "choices": [{ "label": "Batteriet", "isCorrect": true }, { "label": "Glasset", "isCorrect": false }, { "label": "Knappen alene", "isCorrect": false }],
+          "feedback": "Batteriet gir energien."
+        },
+        "comeback": {
+          "id": "q-nat-02-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "part_function" },
+          "prompt": "Hva gjør bryteren i en lommelykt: åpner og lukker strømveien, eller lager den batteriet?",
+          "acceptedAnswers": ["åpner og lukker strømveien", "den slår strømmen av og på"],
+          "feedback": "Ja. Bryteren åpner eller lukker strømveien."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-energi-temperatur",
+      "essentialId": "no-nat-g4-energi-temperatur",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-03-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "compare_measurements" },
+          "prompt": "Det er 6 grader om morgenen og 14 grader om ettermiddagen. Når er det varmest?",
+          "acceptedAnswers": ["om ettermiddagen", "ettermiddagen"],
+          "feedback": "Riktig. 14 grader er varmere enn 6 grader."
+        },
+        "adult_challenge": {
+          "id": "q-nat-03-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "track_two_changes", "sameGrade": true, "childStealable": true },
+          "prompt": "Temperaturen er 8 grader, stiger til 14 og synker så 3 grader. Hva er slutt-temperaturen, og hvor stor er netto endring?",
+          "acceptedAnswers": ["11 grader og 3 grader varmere", "elleve grader; opp tre grader"],
+          "rubric": ["Finner slutt-temperaturen 11 grader.", "Finner netto økning på 3 grader."],
+          "feedback": "Det ender på 11 grader, som er 3 grader varmere enn starten."
+        },
+        "help": {
+          "id": "q-nat-03-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva er varmest: 6 grader, 14 grader eller like varmt?",
+          "choices": [{ "label": "6 grader", "isCorrect": false }, { "label": "14 grader", "isCorrect": true }, { "label": "Like varmt", "isCorrect": false }],
+          "feedback": "14 grader er varmest."
+        },
+        "comeback": {
+          "id": "q-nat-03-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "find_change" },
+          "prompt": "Temperaturen går fra 10 til 15 grader. Hvor mange grader steg den?",
+          "acceptedAnswers": ["5", "fem grader"], "feedback": "Ja. Temperaturen steg 5 grader."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-tilpasning",
+      "essentialId": "no-nat-g4-tilpasning-baerekraft",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-04-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "link_trait_to_function" },
+          "prompt": "Hvordan hjelper svømmehud mellom tærne en and?",
+          "acceptedAnswers": ["den hjelper anden å svømme", "svømme bedre"],
+          "feedback": "Riktig. Svømmehuden skyver vann og hjelper anden å svømme."
+        },
+        "adult_challenge": {
+          "id": "q-nat-04-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "choose_action_and_explain_ecology", "sameGrade": true, "childStealable": true },
+          "prompt": "En hage kan få blomstereng eller mer asfalt. Hvilket valg hjelper bier mest, og hvorfor?",
+          "acceptedAnswers": ["blomstereng, fordi bier får mat og leveområde", "blomster, fordi biene får nektar og pollen"],
+          "rubric": ["Velger blomstereng.", "Kobler valget til mat eller leveområde for bier."],
+          "feedback": "Blomstereng hjelper ved å gi bier mat og leveområde."
+        },
+        "help": {
+          "id": "q-nat-04-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hjelper svømmehud en and mest med å svømme, klatre i trær eller grave?",
+          "choices": [{ "label": "Svømme", "isCorrect": true }, { "label": "Klatre i trær", "isCorrect": false }, { "label": "Grave", "isCorrect": false }],
+          "feedback": "Svømme er riktig."
+        },
+        "comeback": {
+          "id": "q-nat-04-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "link_trait_to_environment" },
+          "prompt": "Hvorfor er tykk pels nyttig for et dyr som lever et kaldt sted?",
+          "acceptedAnswers": ["den holder dyret varmt", "for å holde på varmen"],
+          "feedback": "Ja. Tykk pels hjelper dyret å holde på varmen."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-vannets-kretslop",
+      "essentialId": "no-nat-g4-vannets-kretslop",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-05-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_process" },
+          "prompt": "Sola varmer en sølepytt, og vann går opp i lufta som vanndamp. Hva kalles det?",
+          "acceptedAnswers": ["fordamping", "det fordamper"],
+          "feedback": "Riktig. Når flytende vann blir vanndamp, kalles det fordamping."
+        },
+        "adult_challenge": {
+          "id": "q-nat-05-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "sequence_processes", "sameGrade": true, "childStealable": true },
+          "prompt": "Sett delene i riktig rekkefølge fra havet til regn: nedbør, fordamping og kondensasjon.",
+          "acceptedAnswers": ["fordamping, kondensasjon, nedbør"],
+          "rubric": ["Starter med fordamping.", "Plasserer kondensasjon før nedbør."],
+          "feedback": "Riktig rekkefølge er fordamping, kondensasjon og nedbør."
+        },
+        "help": {
+          "id": "q-nat-05-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Når vann blir til vanndamp, er det fordamping, frysing eller smelting?",
+          "choices": [{ "label": "Fordamping", "isCorrect": true }, { "label": "Frysing", "isCorrect": false }, { "label": "Smelting", "isCorrect": false }],
+          "feedback": "Fordamping er riktig."
+        },
+        "comeback": {
+          "id": "q-nat-05-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_process" },
+          "prompt": "Hva kalles vann som faller fra skyer som regn eller snø?",
+          "acceptedAnswers": ["nedbør"], "feedback": "Ja. Regn og snø fra skyene er nedbør."
+        }
+      }
+    },
+    {
+      "familyId": "fam-nat-kropp-helse",
+      "essentialId": "no-nat-g4-kropp-helse",
+      "subject": "Naturfag",
+      "variants": {
+        "child_core": {
+          "id": "q-nat-06-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "explain_body_response" },
+          "prompt": "Hvorfor slår hjertet ofte raskere når du løper?",
+          "acceptedAnswers": ["kroppen trenger mer oksygen", "for å pumpe mer blod og oksygen til kroppen"],
+          "feedback": "Riktig. Musklene trenger mer oksygen, så hjertet pumper raskere."
+        },
+        "adult_challenge": {
+          "id": "q-nat-06-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "explain_health_chain", "sameGrade": true, "childStealable": true },
+          "prompt": "Forklar kort hvordan håndvask med såpe kan beskytte både deg og andre mot sykdom.",
+          "acceptedAnswers": ["såpe fjerner mikroorganismer fra hendene og reduserer smitte", "det fjerner bakterier og virus så de ikke spres videre"],
+          "rubric": ["Nevner at håndvask fjerner eller reduserer mikroorganismer.", "Kobler det til mindre smittespredning."],
+          "feedback": "Såpe og vann fjerner mange mikroorganismer og reduserer at de spres videre."
+        },
+        "help": {
+          "id": "q-nat-06-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Når du løper, slår hjertet vanligvis raskere, saktere eller helt likt?",
+          "choices": [{ "label": "Raskere", "isCorrect": true }, { "label": "Saktere", "isCorrect": false }, { "label": "Helt likt", "isCorrect": false }],
+          "feedback": "Raskere er riktig fordi kroppen trenger mer oksygen."
+        },
+        "comeback": {
+          "id": "q-nat-06-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_health_action" },
+          "prompt": "Hva er best før du spiser: vaske hendene med såpe og vann, eller bare tørke dem på buksa?",
+          "acceptedAnswers": ["vaske hendene med såpe og vann", "såpe og vann"],
+          "feedback": "Ja. Såpe og vann reduserer smuss og mikroorganismer på hendene."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-kilder",
+      "essentialId": "no-sam-g4-kilder",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-01-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_relevant_source" },
+          "prompt": "Du vil finne ut hvilket år skolen ble bygd. Hva er best: et datert dokument i kommunens arkiv som oppgir byggeåret, eller en venns gjetning?",
+          "acceptedAnswers": ["det daterte dokumentet", "dokumentet i kommunens arkiv", "kommunens arkiv"],
+          "feedback": "Riktig. Det daterte dokumentet er en direkte kilde som kan kontrolleres."
+        },
+        "adult_challenge": {
+          "id": "q-sam-01-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "compare_sources", "sameGrade": true, "childStealable": true },
+          "prompt": "Et avisutklipp og et datert byggevedtak oppgir ulike år for skolen. Hva bør du gjøre før du konkluderer?",
+          "acceptedAnswers": ["sjekke begge kildene og finne flere uavhengige kilder", "sammenligne kildene og undersøke hvorfor de er ulike"],
+          "rubric": ["Vil undersøke begge kildene.", "Foreslår kontroll mot flere eller mer direkte kilder."],
+          "feedback": "Sammenlign kildene og kontroller mot flere uavhengige eller direkte spor."
+        },
+        "help": {
+          "id": "q-sam-01-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva er mest nyttig for å finne byggeåret: et datert kommunalt dokument, en gjetning eller en tilfeldig tegning?",
+          "choices": [{ "label": "Et datert kommunalt dokument", "isCorrect": true }, { "label": "En gjetning", "isCorrect": false }, { "label": "En tilfeldig tegning", "isCorrect": false }],
+          "feedback": "Det daterte dokumentet gir et direkte og kontrollerbart spor."
+        },
+        "comeback": {
+          "id": "q-sam-01-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_relevant_source" },
+          "prompt": "Vil du finne dagens åpningstid på biblioteket. Er bibliotekets offisielle nettside eller et fem år gammelt bilde best?",
+          "acceptedAnswers": ["bibliotekets offisielle nettside", "den offisielle nettsiden"],
+          "feedback": "Ja. Den offisielle nettsiden er mest relevant for dagens åpningstid."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-fortid-natid",
+      "essentialId": "no-sam-g4-fortid-natid",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-02-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "infer_from_object" },
+          "prompt": "Hva kan en gammel skolepult være et spor etter?",
+          "acceptedAnswers": ["hvordan skolen var før", "skoleliv i fortiden", "hvordan barn jobbet på skolen før"],
+          "feedback": "Riktig. Den kan fortelle noe om skolelivet i fortiden."
+        },
+        "adult_challenge": {
+          "id": "q-sam-02-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "compare_then_and_now", "sameGrade": true, "childStealable": true },
+          "prompt": "En skoletekst fra 1950 beskriver tavle og bøker, men ingen digitale hjelpemidler. Nevn én likhet og én forskjell fra et klasserom i dag.",
+          "acceptedAnswers": ["begge har tavle eller bøker; i dag kan vi ha datamaskiner"],
+          "rubric": ["Nevner én rimelig likhet.", "Nevner én rimelig forskjell støttet av sporet."],
+          "feedback": "For eksempel: begge kan ha tavle og bøker, mens mange klasserom i dag også har datamaskiner."
+        },
+        "help": {
+          "id": "q-sam-02-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Forteller en gammel skolepult mest om skoleliv, været i morgen eller en framtidig planet?",
+          "choices": [{ "label": "Skoleliv før", "isCorrect": true }, { "label": "Været i morgen", "isCorrect": false }, { "label": "En framtidig planet", "isCorrect": false }],
+          "feedback": "Den gamle pulten er et spor etter skoleliv før."
+        },
+        "comeback": {
+          "id": "q-sam-02-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "identify_historical_trace" },
+          "prompt": "Er et hundre år gammelt brev et spor fra fortiden eller en spådom om framtiden?",
+          "acceptedAnswers": ["et spor fra fortiden", "fortiden"],
+          "feedback": "Ja. Brevet er et bevart spor fra fortiden."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-kart-landskap",
+      "essentialId": "no-sam-g4-kart-landskap",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-03-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "use_map_legend" },
+          "prompt": "Hva heter boksen som forklarer hva tegn og farger betyr på et kart?",
+          "acceptedAnswers": ["tegnforklaring", "kartforklaring", "legende"],
+          "feedback": "Riktig. Tegnforklaringen viser hva karttegnene betyr."
+        },
+        "adult_challenge": {
+          "id": "q-sam-03-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "connect_landscape_and_settlement", "sameGrade": true, "childStealable": true },
+          "prompt": "Hvorfor kan mange eldre tettsteder ha vokst fram nær en elv eller havn? Nevn én praktisk grunn.",
+          "acceptedAnswers": ["transport", "tilgang til vann", "fiske eller handel", "det var lett å frakte varer"],
+          "rubric": ["Nevner en relevant grunn som transport, vann, fiske eller handel."],
+          "feedback": "Nærhet til vann kunne gi transport, mat, handel eller ferskvann."
+        },
+        "help": {
+          "id": "q-sam-03-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva forklarer karttegn: tegnforklaringen, tittelen alene eller været?",
+          "choices": [{ "label": "Tegnforklaringen", "isCorrect": true }, { "label": "Tittelen alene", "isCorrect": false }, { "label": "Været", "isCorrect": false }],
+          "feedback": "Tegnforklaringen forklarer symbolene."
+        },
+        "comeback": {
+          "id": "q-sam-03-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "use_compass_direction" },
+          "prompt": "Hvis nord er opp på kartet, hvilken himmelretning er til høyre?",
+          "acceptedAnswers": ["øst"], "feedback": "Ja. Når nord er opp, er øst til høyre."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-rettigheter-demokrati",
+      "essentialId": "no-sam-g4-rettigheter-demokrati",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-04-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "recognize_right" },
+          "prompt": "Har barn rett til å si meningen sin i saker som gjelder dem?",
+          "acceptedAnswers": ["ja", "ja, barn har rett til å si meningen sin"],
+          "feedback": "Ja. Barn har rett til å bli hørt i saker som angår dem."
+        },
+        "adult_challenge": {
+          "id": "q-sam-04-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "apply_democratic_principle", "sameGrade": true, "childStealable": true },
+          "prompt": "Klassen stemmer over lekeplassaktivitet. Flertallet velger fotball. Hva må klassen fortsatt passe på i et godt demokrati?",
+          "acceptedAnswers": ["at mindretallet blir hørt og behandlet rettferdig", "at de som tapte også blir hørt og får være med"],
+          "rubric": ["Anerkjenner flertallsavgjørelsen.", "Beskytter medvirkning eller rettferdig behandling for mindretallet."],
+          "feedback": "Flertallet kan avgjøre, men mindretallet skal fortsatt høres og behandles rettferdig."
+        },
+        "help": {
+          "id": "q-sam-04-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Kan barn si meningen sin: ja, aldri eller bare etter at de blir voksne?",
+          "choices": [{ "label": "Ja", "isCorrect": true }, { "label": "Aldri", "isCorrect": false }, { "label": "Bare som voksne", "isCorrect": false }],
+          "feedback": "Ja. Barn har rett til å bli hørt."
+        },
+        "comeback": {
+          "id": "q-sam-04-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "recognize_democratic_action" },
+          "prompt": "Hva er mest demokratisk når en klasse skal velge turmål: at én bestemmer alt, eller at alle får si sin mening før avstemning?",
+          "acceptedAnswers": ["at alle får si sin mening før avstemning", "alle får si sin mening"],
+          "feedback": "Riktig. Medvirkning betyr at alle får komme til orde før valget."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-samisk-kultur",
+      "essentialId": "no-sam-g4-samisk-kultur",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-05-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "recall_status" },
+          "prompt": "Hvilken betegnelse bruker vi om samene i Norge?",
+          "acceptedAnswers": ["urfolk", "et urfolk"],
+          "feedback": "Riktig. Samene er urfolk i Norge."
+        },
+        "adult_challenge": {
+          "id": "q-sam-05-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "explain_cultural_measure", "sameGrade": true, "childStealable": true },
+          "prompt": "Hvorfor kan undervisning og skilt på samiske språk bidra til å bevare samisk kultur?",
+          "acceptedAnswers": ["språket blir brukt og lært videre", "det gjør språket synlig og hjelper nye generasjoner å lære det"],
+          "rubric": ["Kobler bruk av språk til at det læres eller føres videre."],
+          "feedback": "Når språk brukes og læres, kan kunnskap og kultur lettere føres videre."
+        },
+        "help": {
+          "id": "q-sam-05-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Samene har en lang historie i Sápmi og egne språk og kulturer. Hvilken betegnelse er riktig: urfolk, kommune eller verdensdel?",
+          "choices": [{ "label": "Urfolk", "isCorrect": true }, { "label": "Kommune", "isCorrect": false }, { "label": "Verdensdel", "isCorrect": false }],
+          "feedback": "Urfolk er riktig. Samene er urfolk i Norge."
+        },
+        "comeback": {
+          "id": "q-sam-05-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "recognize_preservation_action" },
+          "prompt": "Hva hjelper mest med å bevare et språk: å bruke og lære det, eller å forby det?",
+          "acceptedAnswers": ["å bruke og lære det", "bruke språket"],
+          "feedback": "Ja. Et språk bevares når mennesker får bruke og lære det."
+        }
+      }
+    },
+    {
+      "familyId": "fam-sam-personvern-konflikt",
+      "essentialId": "no-sam-g4-personvern-konflikt",
+      "subject": "Samfunnsfag",
+      "variants": {
+        "child_core": {
+          "id": "q-sam-06-child", "role": "child_core", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_safe_action" },
+          "prompt": "En fremmed i et spill spør hvor du bor. Bør du dele adressen eller la være og si fra til en trygg voksen?",
+          "acceptedAnswers": ["la være og si fra til en trygg voksen", "ikke dele adressen"],
+          "feedback": "Riktig. Ikke del adressen; stopp kontakten og si fra til en trygg voksen."
+        },
+        "adult_challenge": {
+          "id": "q-sam-06-adult", "role": "adult_challenge", "memoryOwner": null, "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "hard", "cognitiveDemand": "resolve_privacy_conflict", "sameGrade": true, "childStealable": true },
+          "prompt": "Noen deler et bilde av en klassekamerat i gruppechatten uten å spørre. Hva er en trygg og respektfull handlemåte?",
+          "acceptedAnswers": ["be om at bildet slettes, ikke dele videre og si fra til en trygg voksen", "stoppe delingen og spørre personen om samtykke"],
+          "rubric": ["Stopper eller unngår viderespredning.", "Tar hensyn til samtykke og involverer en trygg voksen ved behov."],
+          "feedback": "Ikke del videre. Be om sletting, ta hensyn til samtykke og hent hjelp fra en trygg voksen."
+        },
+        "help": {
+          "id": "q-sam-06-help", "role": "help", "memoryOwner": "casper", "answerMode": "oral_choice",
+          "prompt": "Hva er tryggest: dele adressen, la være og si fra, eller dele enda mer?",
+          "choices": [{ "label": "Dele adressen", "isCorrect": false }, { "label": "La være og si fra", "isCorrect": true }, { "label": "Dele enda mer", "isCorrect": false }],
+          "feedback": "La være og si fra til en trygg voksen."
+        },
+        "comeback": {
+          "id": "q-sam-06-comeback", "role": "comeback", "memoryOwner": "casper", "answerMode": "oral",
+          "difficulty": { "grade": 4, "band": "easy", "cognitiveDemand": "choose_safe_action" },
+          "prompt": "Bør du spørre før du deler et bilde av en venn?",
+          "acceptedAnswers": ["ja", "ja, spør først"],
+          "feedback": "Ja. Spør om lov før du deler bilder av andre."
+        }
+      }
+    }
+  ]
+}

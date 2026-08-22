@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fffaf2" />
+    <meta id="sitterDescription" name="description" content="Sitter hjelper elever i 4. klasse å flytte viktig kunnskap til langtidsminnet." />
+    <title>Sitter — kunnskap som varer</title>
+    <link rel="stylesheet" href="sitter-styles.css?v=28" />
+  </head>
+  <body>
+    <main class="sitter-app" data-screen="home">
+      <header class="sitter-topbar">
+        <button class="sitter-wordmark" type="button" data-go="home" aria-label="Gå til hjem">
+          <span>Sitter</span>
+          <small id="sitterGradeLabel">4. klasse</small>
+        </button>
+        <button class="sitter-menu-toggle" id="sitterMenuToggle" type="button" aria-controls="sitterPrimaryNav" aria-expanded="false" aria-label="Åpne meny">
+          <span class="menu-label">Meny</span><span class="menu-close-mark" aria-hidden="true">×</span>
+        </button>
+      </header>
+
+      <nav class="binder-tabs" id="sitterPrimaryNav" aria-label="Hovednavigasjon" aria-hidden="true" inert>
+        <div class="nav-menu-meta"><span>Meny</span><strong id="sitterStreak">0 dager</strong></div>
+        <button class="active tab-home" type="button" data-go="home" aria-current="page">Hjem</button>
+        <button class="tab-memory" type="button" data-go="memory">Langtidsminne</button>
+        <button class="tab-followup" type="button" data-go="followup">Oppfølging</button>
+      </nav>
+
+      <section class="sitter-screen screen-home" data-screen-name="home" aria-labelledby="homeTitle">
+        <div class="surface-intro">
+          <div>
+            <p class="eyebrow">Dagens økt</p>
+            <h1 id="homeTitle">Kunnskap som varer.</h1>
+          </div>
+          <div class="today-date" id="sitterToday"></div>
+        </div>
+
+        <section class="hero-subject-control" aria-labelledby="subjectPickerTitle">
+          <div class="hero-subject-heading">
+            <p class="eyebrow" id="subjectPickerTitle">Fag for økten</p>
+            <p id="subjectPickerHelp">Velg ett, flere eller alle.</p>
+          </div>
+        </section>
+
+        <article class="start-card" aria-live="polite">
+          <div class="subject-earmarks" id="homeSubjects" role="group" aria-labelledby="subjectPickerTitle"></div>
+          <div class="start-card-motion">
+            <div class="start-card-inner">
+            <span class="start-card-slab" aria-hidden="true">
+              <i style="--slab-z: -15px"></i><i style="--slab-z: -12px"></i><i style="--slab-z: -9px"></i>
+              <i style="--slab-z: -6px"></i><i style="--slab-z: -3px"></i><i style="--slab-z: 0px"></i>
+              <i style="--slab-z: 3px"></i><i style="--slab-z: 6px"></i><i style="--slab-z: 9px"></i>
+              <i style="--slab-z: 12px"></i><i style="--slab-z: 15px"></i>
+            </span>
+            <section class="start-card-face start-card-front" id="homeHeroFront">
+              <div class="start-card-copy">
+                <span class="status-pill" id="homeReadyPill">0 oppgaver nå</span>
+                <p class="hero-selection-label" id="selectedSubjectCount">Alle fag</p>
+                <h2 id="homeStartTitle">Alle fag.</h2>
+                <span class="sr-only" id="selectedSubjectNames">Alle fag</span>
+                <p id="homeRoutine">Sitter blander fag og finner neste oppgave for deg.</p>
+                <div class="hero-actions">
+                  <button class="button primary" id="startSitterSession" type="button">Start økt <span>→</span></button>
+                  <button class="hero-flip-button" id="showHeroProgress" type="button" aria-controls="homeHeroBack" aria-expanded="false">Se fremdrift <span aria-hidden="true">↻</span></button>
+                </div>
+              </div>
+              <div class="binder-stack" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+                <strong id="homeSessionTarget">5</strong>
+                <small id="homeHeroLabel">oppgaver</small>
+              </div>
+            </section>
+
+            <section class="start-card-face start-card-back" id="homeHeroBack" aria-hidden="true" inert>
+              <div class="hero-progress-copy">
+                <p class="hero-selection-label">Fremdrift</p>
+                <h2 id="homeProgressTitle">Alle fag.</h2>
+                <p>Se hvor langt spørsmålene har kommet.</p>
+              </div>
+              <div class="hero-stage-progress" id="homeStageProgress" aria-label="Spørsmål fordelt på hukommelsessteg"></div>
+              <button class="hero-flip-button hero-flip-back" id="hideHeroProgress" type="button">Tilbake til økten <span aria-hidden="true">↻</span></button>
+              </section>
+            </div>
+          </div>
+        </article>
+
+        <section class="how-sitter-works" id="howSitterWorks" aria-labelledby="howSitterWorksTitle">
+          <button class="how-dismiss" id="dismissHowSitterWorks" type="button" aria-label="Skjul forklaringen">×</button>
+          <div class="how-copy">
+            <p class="eyebrow">Slik virker Sitter</p>
+            <h2 id="howSitterWorksTitle">Du svarer. Vi passer på resten.</h2>
+            <p>Du trenger ikke velge nivå eller huske når du skal øve igjen.</p>
+          </div>
+          <ol class="how-steps">
+            <li><b>1</b><span><strong>Svar uten hjelp</strong><small>Hent det frem fra hukommelsen.</small></span></li>
+            <li><b>2</b><span><strong>Sitter sjekker</strong><small>Du ser med én gang om det stemmer.</small></span></li>
+            <li><b>3</b><span><strong>Oppgaven kommer tilbake</strong><small>Akkurat før du er i ferd med å glemme.</small></span></li>
+          </ol>
+          <div class="memory-journey" aria-label="Fra ny kunnskap til noe som sitter">
+            <span>Ny</span><i></i><span>På vei</span><i></i><strong>Sitter</strong>
+          </div>
+        </section>
+        <button class="how-compact" id="openHowSitterWorks" type="button" hidden>
+          <span><b>?</b><strong>Hvordan trener Sitter hukommelsen?</strong></span><i>Vis forklaring →</i>
+        </button>
+
+      </section>
+
+      <section class="sitter-screen screen-session" data-screen-name="session" aria-labelledby="sessionTitle" hidden>
+        <div class="focus-topbar">
+          <button class="icon-button" type="button" data-session-exit aria-label="Avslutt økten">×</button>
+          <div class="session-progress-copy">
+            <span>Dagens økt</span>
+            <strong id="sessionProgressText">1 av 5</strong>
+          </div>
+          <span class="quiet-badge" id="sessionSubject">Matematikk</span>
+        </div>
+        <div class="binder-progress" id="sessionProgress" aria-label="Fremdrift i økten"></div>
+
+        <div class="focus-guide" aria-label="Slik gjennomfører du en oppgave">
+          <span class="active"><b>1</b> Svar</span>
+          <i>→</i>
+          <span><b>2</b> Sjekk</span>
+          <i>→</i>
+          <span><b>3</b> Neste gang</span>
+        </div>
+
+        <article class="question-card" id="questionCard">
+          <div class="question-meta">
+            <span class="importance-tag" id="questionImportance">Grunnmur</span>
+            <span class="memory-chip" id="questionMemoryStage">Ny</span>
+          </div>
+          <p class="eyebrow" id="questionType">Oppgave</p>
+          <h1 id="sessionTitle">Laster oppgave …</h1>
+          <p class="question-helper" id="questionHelper"></p>
+          <label class="answer-field">
+            <span>Svaret ditt</span>
+            <textarea id="sitterAnswer" rows="3" placeholder="Skriv her" autocomplete="off"></textarea>
+          </label>
+          <button class="button primary full" id="checkSitterAnswer" type="button" disabled>Sjekk svaret</button>
+        </article>
+        <p class="focus-note">Ingen tidtaking. Tenk ferdig i ditt tempo.</p>
+      </section>
+
+      <section class="sitter-screen screen-result" data-screen-name="result" aria-labelledby="resultTitle" hidden>
+        <div class="result-shell" id="resultShell" data-tone="success">
+          <div class="result-hero">
+            <div class="celebration" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              <div class="result-mark" id="resultMark">✓</div>
+            </div>
+            <div class="reward-media" id="resultRewardMedia" aria-hidden="true">
+              <div class="premium-scene" role="img" aria-labelledby="premiumSceneTitle premiumSceneCaption">
+                <svg class="premium-transformation" viewBox="0 0 320 210" aria-hidden="true">
+                  <g class="premium-rays">
+                    <path d="M160 8v34"/><path d="M160 168v34"/><path d="M58 105h42"/><path d="M220 105h42"/>
+                    <path d="m88 33 28 28"/><path d="m204 149 28 28"/><path d="m232 33-28 28"/><path d="m116 149-28 28"/>
+                  </g>
+                  <g class="premium-orbits">
+                    <circle cx="160" cy="105" r="76"/><circle cx="160" cy="105" r="59"/><circle cx="160" cy="105" r="43"/>
+                  </g>
+                  <g class="premium-figure">
+                    <path class="premium-cape" d="M116 160c8-34 21-52 44-52s36 18 44 52l-22-11-22 28-22-28z"/>
+                    <circle class="premium-head" cx="160" cy="76" r="25"/>
+                    <path class="premium-hair" d="m137 67 9-30 14 16 17-24 5 30 18-7-16 31h-47l-17-28z"/>
+                    <rect class="premium-binder" x="126" y="103" width="68" height="61" rx="12"/>
+                    <path class="premium-spine" d="M142 104v59"/>
+                    <text class="premium-seal" id="premiumSealText" x="169" y="142">S</text>
+                    <path class="premium-arm premium-arm-left" d="m128 117-26 25"/>
+                    <path class="premium-arm premium-arm-right" d="m192 117 26 25"/>
+                  </g>
+                </svg>
+                <span class="premium-kicker">Én måned frem</span>
+                <strong id="premiumSceneTitle">Månedsmerket er ditt.</strong>
+                <small id="premiumSceneCaption">Kunnskapen holdt hele veien.</small>
+              </div>
+              <div class="premium-controls" aria-label="Kontroller for belønningen">
+                <button id="premiumSoundToggle" type="button" aria-pressed="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 9c1.3 1.7 1.3 4.3 0 6M19 6c3.2 3.4 3.2 8.6 0 12"/></svg>
+                  <span>Lyd på</span>
+                </button>
+                <button id="premiumSkip" type="button">Vis ferdig bilde</button>
+              </div>
+            </div>
+            <p class="eyebrow" id="resultEyebrow">Riktig</p>
+            <h1 id="resultTitle" tabindex="-1">Den satt.</h1>
+            <p class="result-message sr-only" id="resultMessage"></p>
+            <div class="reward-unlock" id="resultReward" aria-live="polite">
+              <strong id="resultRewardStage">Ny → På vei</strong>
+              <small id="resultRewardText">Ett steg nærmere langtidsminnet.</small>
+            </div>
+          </div>
+          <div class="result-footer">
+            <details class="result-details">
+              <summary>Se svar og tidspunkt <span aria-hidden="true">+</span></summary>
+              <div class="result-details-panel">
+                <div class="result-detail-heading">
+                  <span>Se forskjellen</span>
+                  <strong>Dette hjelper hjernen å hente det frem neste gang.</strong>
+                </div>
+                <article class="answer-comparison">
+                  <div>
+                    <span>Du svarte</span>
+                    <strong id="resultGivenAnswer"></strong>
+                  </div>
+                  <div>
+                    <span>Riktig svar</span>
+                    <strong id="resultCorrectAnswer"></strong>
+                  </div>
+                </article>
+                <div class="next-review-card">
+                  <span id="resultNextReviewLabel">Kommer tilbake</span>
+                  <strong id="resultNextReview">om 5 minutter</strong>
+                </div>
+              </div>
+            </details>
+            <div class="result-actions">
+              <button class="button primary" id="continueSitterSession" type="button">Neste oppgave <span>→</span></button>
+              <button class="button ghost" id="finishSitterSession" type="button">Avslutt økten</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sitter-screen screen-complete" data-screen-name="complete" aria-labelledby="completeTitle" hidden>
+        <div class="completion-ring" aria-hidden="true"><span>✓</span><i></i><i></i></div>
+        <p class="eyebrow">Ferdig for i dag</p>
+        <h1 id="completeTitle">Bra jobbet.<br />Nå får hjernen hvile.</h1>
+        <p id="completeMessage">Du gjorde fem oppgaver.</p>
+        <div class="completion-stats">
+          <div><strong id="completeCount">0</strong><span>gjort</span></div>
+          <div><strong id="completeCorrect">0</strong><span>riktige</span></div>
+          <div><strong id="completePromoted">0</strong><span>flyttet videre</span></div>
+        </div>
+        <button class="button primary" type="button" data-go="home">Tilbake til Hjem</button>
+        <button class="text-button centered" type="button" data-go="memory">Se langtidsminnet</button>
+      </section>
+
+      <section class="sitter-screen screen-memory" data-screen-name="memory" aria-labelledby="memoryTitle" hidden>
+        <div class="surface-intro memory-intro">
+          <div>
+            <p class="eyebrow">Langtidsminne</p>
+            <h1 id="memoryTitle">Dette har begynt<br />å sitte.</h1>
+          </div>
+          <div class="memory-total"><strong id="memorySittingCount">0</strong><span>sitter</span></div>
+        </div>
+        <div class="memory-ladder" aria-label="Mestringsstigen">
+          <div><span>Nå</span><strong id="memoryActive">0</strong></div>
+          <i></i>
+          <div><span>1 time</span><strong id="memoryHour">0</strong></div>
+          <i></i>
+          <div><span>1 dag</span><strong id="memoryDay">0</strong></div>
+          <i></i>
+          <div><span>1 uke</span><strong id="memoryWeek">0</strong></div>
+          <i></i>
+          <div class="active"><span>Sitter</span><strong id="memorySitting">0</strong></div>
+        </div>
+        <div class="section-heading">
+          <div><p class="eyebrow">Fremgang</p><h2>Fag for fag</h2></div>
+        </div>
+        <div class="memory-subjects" id="memorySubjects"></div>
+        <div class="section-heading">
+          <div><p class="eyebrow">Siste aktivitet</p><h2>Oppgavehistorikk</h2></div>
+        </div>
+        <div class="history-list" id="memoryHistory"></div>
+      </section>
+
+      <section class="sitter-screen screen-history" data-screen-name="history" aria-labelledby="historyTitle" hidden>
+        <button class="back-button" type="button" data-go="memory">← Langtidsminne</button>
+        <div class="history-header">
+          <div>
+            <p class="eyebrow" id="historySubject">Fag</p>
+            <h1 id="historyTitle">Oppgavehistorikk</h1>
+          </div>
+          <span class="memory-chip" id="historyStage">Ny</span>
+        </div>
+        <article class="history-question">
+          <span>Oppgaven</span>
+          <strong id="historyQuestion"></strong>
+          <p id="historyAnswer"></p>
+        </article>
+        <div class="history-context-grid">
+          <article><span>Hvorfor den er viktig</span><p id="historyMeaning"></p></article>
+          <article><span>Kilde</span><p id="historySource"></p></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">Repetisjoner</p><h2>Reisen hit</h2></div></div>
+        <div class="attempt-list" id="historyAttempts"></div>
+      </section>
+
+      <section class="sitter-screen screen-followup" data-screen-name="followup" aria-labelledby="followupTitle" hidden>
+        <div class="surface-intro followup-intro">
+          <div><p class="eyebrow">Oppfølging</p><h1 id="followupTitle">Rolige rammer.<br />Tydelig neste steg.</h1></div>
+          <span class="adult-badge">For voksen</span>
+        </div>
+        <article class="recommendation-card">
+          <span>I dag anbefaler Sitter</span>
+          <strong id="followupRecommendation"></strong>
+        </article>
+        <div class="followup-grid">
+          <article class="settings-card">
+            <div><p class="eyebrow">Avtale</p><h2>Dagens ramme</h2></div>
+            <label>Antall oppgaver<select id="followupTarget"><option value="5">5 oppgaver</option><option value="8">8 oppgaver</option><option value="12">12 oppgaver</option></select></label>
+            <label>Avtaletype<select id="followupMode"><option value="requirement">Krav først</option><option value="reward">Belønning etterpå</option><option value="longMemory">Belønning for langtidsminne</option></select></label>
+            <label>Belønning eller avtale<input id="followupReward" maxlength="80" placeholder="For eksempel 20 min skjermtid" /></label>
+            <button class="button primary full" id="saveFollowup" type="button">Lagre avtalen</button>
+          </article>
+          <article class="adult-status-card">
+            <div><p class="eyebrow">Status</p><h2 id="followupGradeLabel">4. klasse</h2></div>
+            <div class="adult-metrics" id="followupMetrics"></div>
+            <div class="source-note"><span>Faggrunnlag</span><p id="followupSourceNote">Første MVP-pakke er avgrenset til 4. klasse og bygger på Udir/Grep.</p></div>
+          </article>
+        </div>
+        <button class="danger-link" id="resetSitterData" type="button">Nullstill lokale testdata</button>
+      </section>
+
+      <section class="sitter-screen screen-empty" data-screen-name="empty" aria-labelledby="emptyTitle" hidden>
+        <div class="empty-icon" aria-hidden="true">○</div>
+        <p class="eyebrow">Alt er i rute</p>
+        <h1 id="emptyTitle">Ingen oppgaver<br />akkurat nå.</h1>
+        <p id="emptyMessage">Neste oppgave kommer når hjernen har fått en passe pause.</p>
+        <div class="next-due" id="emptyNextDue"></div>
+        <button class="button primary" type="button" data-go="home">Tilbake til Hjem</button>
+        <button class="text-button centered" type="button" data-go="memory">Se hva som sitter</button>
+      </section>
+
+      <div class="toast" id="sitterToast" role="status" aria-live="polite" hidden></div>
+    </main>
+
+    <script src="retention-core.js?v=55"></script>
+    <script src="sitter-curriculum.js?v=2"></script>
+    <script src="sitter-curriculum-casper.js?v=3"></script>
+    <script src="sitter-mechanics.js?v=2"></script>
+    <script src="sitter-app.js?v=23"></script>
+  </body>
+</html>

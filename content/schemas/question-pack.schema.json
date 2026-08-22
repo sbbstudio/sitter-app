@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sitter.local/schemas/question-pack.schema.json",
+  "title": "Sitter Adult–Child Question Pack",
+  "type": "object",
+  "required": [
+    "packId",
+    "version",
+    "title",
+    "locale",
+    "jurisdiction",
+    "targetGrade",
+    "schoolYear",
+    "validFrom",
+    "releaseStatus",
+    "essentialCollection",
+    "essentialIds",
+    "subjects",
+    "contentCounts",
+    "memoryPolicy",
+    "scoringPolicy",
+    "safetyPolicy",
+    "questionFamilies"
+  ],
+  "properties": {
+    "packId": { "type": "string", "pattern": "^[a-z0-9.-]+$" },
+    "version": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "locale": { "const": "nb-NO" },
+    "jurisdiction": { "const": "NO" },
+    "targetGrade": { "const": 4 },
+    "schoolYear": { "const": "2026-2027" },
+    "validFrom": { "const": "2026-08-01" },
+    "releaseStatus": { "enum": ["candidate", "review", "ready", "retired"] },
+    "essentialIds": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "subjects": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "enum": ["Matematikk", "Norsk", "Engelsk", "Naturfag", "Samfunnsfag"] },
+      "uniqueItems": true
+    },
+    "questionFamilies": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["familyId", "essentialId", "subject", "variants"],
+        "properties": {
+          "variants": {
+            "type": "object",
+            "required": ["child_core", "adult_challenge", "help", "comeback"]
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

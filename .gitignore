@@ -1,0 +1,5 @@
+.env
+.env.local
+.scrape-cache/
+assets/scraped/
+.vercel

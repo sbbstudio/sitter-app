@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sitter.local/schemas/learning-essential.schema.json",
+  "title": "Sitter Learning Essential Collection",
+  "type": "object",
+  "required": ["collectionId", "version", "status", "targetGrade", "checkedAt", "essentials"],
+  "properties": {
+    "collectionId": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["candidate", "approved", "retired"] },
+    "targetGrade": { "const": 4 },
+    "checkedAt": { "type": "string", "format": "date" },
+    "essentials": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": [
+          "essentialId",
+          "subject",
+          "statement",
+          "priorityTier",
+          "selectionLayer",
+          "sourceEvidence",
+          "status"
+        ],
+        "properties": {
+          "essentialId": { "type": "string", "pattern": "^no-[a-z]+-g4-[a-z0-9-]+$" },
+          "subject": { "enum": ["Matematikk", "Norsk", "Engelsk", "Naturfag", "Samfunnsfag"] },
+          "statement": { "type": "string", "minLength": 8 },
+          "priorityTier": { "enum": ["grunnmur", "viktig", "berikelse"] },
+          "selectionLayer": { "const": "curriculum_core" },
+          "sourceEvidence": {
+            "type": "object",
+            "required": [
+              "jurisdiction",
+              "curriculumVersion",
+              "validFrom",
+              "sourceMatch",
+              "sourceGradeBand",
+              "objectiveRef",
+              "officialSourceUrl",
+              "checkedAt"
+            ]
+          },
+          "status": { "enum": ["candidate", "expert_review", "approved", "retired"] }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

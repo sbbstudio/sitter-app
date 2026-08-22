@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#fffaf2" />
+    <meta name="description" content="Er du smartere enn barnet ditt? Et muntlig practice-spill for Casper og en voksen." />
+    <title>Er du smartere enn barnet ditt? · Sitter</title>
+    <link rel="stylesheet" href="family-game-styles.css?v=2" />
+  </head>
+  <body>
+    <main class="game-app" id="gameApp">
+      <header class="topbar">
+        <a class="wordmark" href="family-practice.html" aria-label="Practice-spillet, gå til start">
+          <span>Sitter</span><small>practice</small>
+        </a>
+        <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="gameMenu">Meny</button>
+      </header>
+
+      <nav class="game-menu" id="gameMenu" hidden aria-label="Practice-meny">
+        <div><strong>Practice-spill</strong><button id="closeMenu" type="button" aria-label="Lukk meny">×</button></div>
+        <a href="family-practice.html">Nytt practice-spill</a>
+        <a href="family-game.html">Sitter Familiespill</a>
+        <a href="sitter.html?pakke=casper">Sitter Solo · Casper</a>
+        <button id="resetFamilyGame" type="button">Nullstill lokale practice-data</button>
+      </nav>
+
+      <section class="screen" aria-live="polite" aria-atomic="false">
+        <div class="scorebar" id="scorebar"></div>
+        <div class="intro" id="intro">
+          <p class="eyebrow" id="stateEyebrow">Practice-sett · Review</p>
+          <h1 id="stateTitle">Laster practice-spillet …</h1>
+          <p class="lede" id="stateLede"></p>
+        </div>
+
+        <div class="binder-wrap">
+          <div class="player-earmarks" id="playerEarmarks" aria-label="Spillere"></div>
+          <article class="solid-card" id="solidCard">
+            <span class="card-slab" aria-hidden="true">
+              <i style="--y:10px"></i><i style="--y:9px"></i><i style="--y:8px"></i>
+              <i style="--y:7px"></i><i style="--y:6px"></i><i style="--y:5px"></i>
+              <i style="--y:4px"></i><i style="--y:3px"></i><i style="--y:2px"></i>
+              <i style="--y:1px"></i><i style="--y:0px"></i>
+            </span>
+            <div class="card-face" id="cardFace"></div>
+          </article>
+        </div>
+        <p class="save-status" id="saveStatus" role="status"></p>
+      </section>
+    </main>
+
+    <script src="retention-core.js?v=1"></script>
+    <script src="family-game-core.js?v=2"></script>
+    <script src="family-practice-content.js?v=1"></script>
+    <script src="family-practice-bootstrap.js?v=1"></script>
+  </body>
+</html>

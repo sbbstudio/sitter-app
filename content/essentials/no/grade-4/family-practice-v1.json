@@ -1,0 +1,551 @@
+{
+  "$schema": "../../../schemas/learning-essential.schema.json",
+  "collectionId": "no.casper.grade4.family-practice.v1",
+  "version": "1.0.0",
+  "status": "candidate",
+  "targetGrade": 4,
+  "schoolYear": "2026-2027",
+  "checkedAt": "2026-07-15",
+  "essentials": [
+    {
+      "essentialId": "no-mat-g4-delingsdivisjon",
+      "subject": "Matematikk",
+      "statement": "Bruke divisjon til å dele en mengde likt og forklare hva svaret betyr.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske divisjon i delings- og målingssituasjoner.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-mat-g4-regnearter-sammenheng",
+      "subject": "Matematikk",
+      "statement": "Bruke sammenhengen mellom multiplikasjon og divisjon til å finne og kontrollere svar.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke sammenhenger mellom regneartene i beregninger og problemløsing.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-mat-g4-overslag-modellering",
+      "subject": "Matematikk",
+      "statement": "Gjøre overslag og vurdere om et svar er rimelig i en praktisk situasjon.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Modellere situasjoner, gjøre overslag og vurdere løsninger.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-mat-g4-figurer-egenskaper",
+      "subject": "Matematikk",
+      "statement": "Kjenne igjen todimensjonale og tredimensjonale figurer fra egenskapene deres.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske og beskrive egenskaper ved todimensjonale og tredimensjonale figurer.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-mat-g4-volum-enhetskuber",
+      "subject": "Matematikk",
+      "statement": "Bestemme volum ved å telle eller strukturere enhetskuber.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske volum og sammenligne volum ved hjelp av enhetskuber.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-mat-g4-monster-algoritmer",
+      "subject": "Matematikk",
+      "statement": "Finne og følge mønstre og enkle algoritmer trinn for trinn.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "MAT01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske mønstre og lage eller følge algoritmer.",
+        "officialSourceUrl": "https://www.udir.no/lk20/mat01-06/kompetansemaal-og-vurdering/kv1023?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-leseforstaelse",
+      "subject": "Norsk",
+      "statement": "Hente ut eksplisitt informasjon og trekke en enkel slutning fra en kort tekst.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Lese tekster med flyt og forståelse og bruke lesestrategier.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-fakta-mening",
+      "subject": "Norsk",
+      "statement": "Skille mellom opplysninger som kan kontrolleres og personlige meninger.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Skille mellom fakta og meninger i tekster.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-tegnsetting",
+      "subject": "Norsk",
+      "statement": "Velge punktum, spørsmålstegn eller utropstegn etter meningen i setningen.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke stor bokstav og tegnsetting i egen tekst.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-ordklasser",
+      "subject": "Norsk",
+      "statement": "Kjenne igjen vanlige substantiv, verb og adjektiv i en setning.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske og bruke substantiv, verb og adjektiv.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-boying-setningsbygging",
+      "subject": "Norsk",
+      "statement": "Bøye vanlige ord og bygge en grammatisk setning som passer til tid og tall.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke kunnskap om bøying og setningsoppbygging i muntlig og skriftlig språk.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nor-g4-spraktilpasning",
+      "subject": "Norsk",
+      "statement": "Tilpasse et muntlig budskap til mottaker og situasjon.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NOR01-08",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Tilpasse muntlig og skriftlig språk til formål og mottaker.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nor01-08/kompetansemaal-og-vurdering/kv1108?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-ordforrad-kontekst",
+      "subject": "Engelsk",
+      "statement": "Forstå betydningen av et vanlig engelsk ord ved hjelp av setningskontekst.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke sammenheng i en tekst til å forstå ord og uttrykk.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-hoflige-fraser",
+      "subject": "Engelsk",
+      "statement": "Bruke høflige engelske fraser i en enkel samtale.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke høflighetsuttrykk og delta i enkle samtaler.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-lydmonster",
+      "subject": "Engelsk",
+      "statement": "Kjenne igjen enkle engelske rim og vanlige mønstre mellom skrift og lyd.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske sammenhenger mellom engelske språklyder og stavemønstre.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-ordklasser",
+      "subject": "Engelsk",
+      "statement": "Kjenne igjen vanlige engelske substantiv, verb og adjektiv.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske noen ordklasser og bruke dem i enkle setninger.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-ordstilling",
+      "subject": "Engelsk",
+      "statement": "Sette vanlige engelske ord i forståelig setningsrekkefølge.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Følge enkle regler for stavemåte og setningsstruktur.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-eng-g4-tekstforstaelse",
+      "subject": "Engelsk",
+      "statement": "Hente ut informasjon og trekke en enkel slutning fra en kort engelsk tekst.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "ENG01-06",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Lese og forstå enkle engelske tekster og samtale om innholdet.",
+        "officialSourceUrl": "https://www.udir.no/lk20/eng01-06/kompetansemaal-og-vurdering/kv1031?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-hypotese-data",
+      "subject": "Naturfag",
+      "statement": "Formulere en enkel forventning og bruke observasjoner eller data til å svare.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Stille spørsmål, lage hypoteser og samle eller bruke data i utforskinger.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-systemer-materialer",
+      "subject": "Naturfag",
+      "statement": "Forklare hvordan deler og materialer bidrar til at et enkelt teknologisk system virker.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske teknologiske systemer og egenskaper ved materialene i dem.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-energi-temperatur",
+      "subject": "Naturfag",
+      "statement": "Lese enkle temperaturdata og beskrive en endring.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske og beskrive temperatur, energi og endringer ved hjelp av observasjoner og målinger.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-tilpasning-baerekraft",
+      "subject": "Naturfag",
+      "statement": "Koble en egenskap hos en organisme til miljøet og velge et naturvennlig tiltak.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske organismers tilpasninger og samtale om bærekraftige valg.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-vannets-kretslop",
+      "subject": "Naturfag",
+      "statement": "Beskrive hoveddelene i vannets kretsløp og hvorfor vann er viktig for liv.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske og beskrive vannets kretsløp og gjøre rede for vannets betydning for liv.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-nat-g4-kropp-helse",
+      "subject": "Naturfag",
+      "statement": "Forklare en enkel sammenheng mellom aktivitet, hygiene og kroppens reaksjoner eller helse.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "NAT01-05",
+        "validFrom": "2026-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske kroppslige reaksjoner og samtale om valg som fremmer helse.",
+        "officialSourceUrl": "https://www.udir.no/lk20/nat01-05/kompetansemaal-og-vurdering/kv1076",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-kilder",
+      "subject": "Samfunnsfag",
+      "statement": "Velge en relevant kilde og forklare hvorfor den kan være nyttig.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske og bruke kilder til å finne samfunnsfaglig informasjon.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-fortid-natid",
+      "subject": "Samfunnsfag",
+      "statement": "Bruke spor fra fortiden til å sammenligne liv før og nå.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Utforske kulturminner og sammenligne sider ved fortid og nåtid.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-kart-landskap",
+      "subject": "Samfunnsfag",
+      "statement": "Bruke karttegn og enkle landskapstrekk til å finne eller forklare et sted.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Bruke kart og utforske natur- og kulturlandskap.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-rettigheter-demokrati",
+      "subject": "Samfunnsfag",
+      "statement": "Kjenne igjen en rettighet og forklare et enkelt demokratisk valg.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Samtale om barns rettigheter, demokrati og sentrale samfunnsinstitusjoner.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-samisk-kultur",
+      "subject": "Samfunnsfag",
+      "statement": "Kjenne til at samene er urfolk og forklare hvorfor språk og kultur skal kunne bevares.",
+      "priorityTier": "viktig",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Samtale om samisk samfunnsliv, historie, språk og kultur.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    },
+    {
+      "essentialId": "no-sam-g4-personvern-konflikt",
+      "subject": "Samfunnsfag",
+      "statement": "Ta et trygt personvernvalg og foreslå en respektfull løsning på en digital konflikt.",
+      "priorityTier": "grunnmur",
+      "selectionLayer": "curriculum_core",
+      "sourceEvidence": {
+        "jurisdiction": "NO",
+        "curriculumVersion": "SAF01-04",
+        "validFrom": "2020-08-01",
+        "sourceMatch": "direct",
+        "sourceGradeBand": "4. trinn",
+        "objectiveRef": "Samtale om identitet, personvern, regler og håndtering av konflikter.",
+        "officialSourceUrl": "https://www.udir.no/lk20/saf01-04/kompetansemaal-og-vurdering/kv145?lang=nob",
+        "checkedAt": "2026-07-15"
+      },
+      "status": "candidate"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+@import url("docs/prototypes/family-game-v02/styles.css");
+
+body { padding-bottom: env(safe-area-inset-bottom); }
+.wordmark { text-decoration: none; }
+.screen { min-height: calc(100vh - 68px); }
+.save-status { min-height: 18px; margin: 24px 0 0; color: var(--muted); font-size: .62rem; font-weight: 800; text-align: center; }
+
+.game-menu { position: fixed; z-index: 50; inset: 0; display: grid; align-content: start; gap: 10px; width: min(100%,390px); margin: 0 auto; padding: 20px 18px calc(30px + env(safe-area-inset-bottom)); background: var(--paper); }
+.game-menu[hidden] { display: none; }
+.game-menu div { display: flex; min-height: 52px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.game-menu div strong { font-size: 1.25rem; }
+.game-menu div button { width: 44px; height: 44px; border: 1px solid var(--soft-line); border-radius: 50%; background: var(--paper-strong); font-size: 1.5rem; }
+.game-menu > a, .game-menu > button { display: flex; min-height: 58px; align-items: center; padding: 14px 16px; border: 1px solid var(--soft-line); border-radius: 14px; background: var(--paper-strong); color: var(--ink); font-size: .78rem; font-weight: 900; text-decoration: none; }
+
+.setup-controls { display: grid; gap: 17px; }
+.setup-control { display: grid; gap: 8px; }
+.setup-control > span { color: var(--muted); font-size: .58rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.segment { min-height: 58px; padding: 10px 12px; border: 1px solid var(--soft-line); border-radius: 13px; background: rgba(255,255,255,.68); color: var(--ink); text-align: left; }
+.segment strong, .segment small { display: block; }
+.segment strong { font-size: .76rem; }
+.segment small { margin-top: 4px; color: var(--muted); font-size: .58rem; }
+.segment.is-selected { border-color: var(--segment-color,var(--ink)); box-shadow: inset 0 0 0 1px var(--segment-color,var(--ink)); background: color-mix(in srgb,var(--segment-color,var(--ink)) 10%,white); }
+.grade-lock { width: 100%; }
+.subject-rail { display: flex; gap: 7px; margin-right: -24px; padding: 1px 24px 4px 0; overflow-x: auto; scrollbar-width: none; }
+.subject-rail::-webkit-scrollbar { display: none; }
+.subject-chip { flex: 0 0 auto; min-height: 42px; padding: 9px 12px; border: 1px solid var(--soft-line); border-radius: 999px; background: rgba(255,255,255,.7); color: var(--ink); font-size: .64rem; font-weight: 900; }
+.subject-chip.is-selected { border-color: var(--blue); background: var(--blue); color: white; }
+.setup-summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 13px; border: 1px solid var(--soft-line); border-radius: 13px; background: rgba(255,255,255,.68); }
+.setup-summary span { color: var(--muted); font-size: .6rem; font-weight: 800; }
+.setup-summary strong { font-size: .72rem; }
+.setup-safety { margin: 0; color: var(--muted); font-size: .62rem; font-weight: 800; line-height: 1.45; }
+.setup-card .button:not(.dark) { border-color: var(--soft-line); background: white; color: var(--ink); }
+
+.game-app.is-gameplay .binder-wrap { margin-top: 74px; }
+.game-app.is-gameplay .card-face { min-height: 550px; }
+.turn-progress { color: rgba(255,255,255,.72); font-size: .58rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.oral-lock { display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 13px; background: rgba(255,255,255,.08); }
+.oral-lock b { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: rgba(255,255,255,.16); }
+.oral-lock strong, .oral-lock small { display: block; }
+.oral-lock strong { font-size: .7rem; }
+.oral-lock small { margin-top: 2px; color: rgba(255,255,255,.68); font-size: .58rem; }
+.judgement-grid { grid-template-columns: 1fr; }
+.judgement-grid .button { min-height: 50px; }
+.judgement-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.judgement-secondary .button { min-height: 48px; }
+.choice.is-selected { border-color: white; background: rgba(255,255,255,.23); }
+.choice.is-correct { border-color: #d9f2df; background: rgba(217,242,223,.2); }
+.answer-selected { margin: 10px 0 0; color: rgba(255,255,255,.7); font-size: .66rem; font-weight: 800; }
+.answer-rubric { margin-top: 10px; padding: 11px 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: rgba(255,255,255,.08); }
+.answer-rubric > span { color: rgba(255,255,255,.65); font-size: .54rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.answer-rubric ul { margin: 7px 0 0; padding-left: 18px; }
+.answer-rubric li { margin-top: 4px; font-size: .64rem; font-weight: 750; line-height: 1.35; }
+
+.feedback-mark { display: grid; width: 82px; height: 82px; place-items: center; margin: 0 0 22px; border: 2px solid rgba(255,255,255,.26); border-radius: 50%; background: rgba(255,255,255,.12); box-shadow: 0 10px 0 rgba(17,20,29,.12); font-size: 2rem; font-weight: 900; }
+.feedback-points { margin: 0 0 10px; font-size: 2.2rem; line-height: 1; letter-spacing: -.05em; }
+.feedback-detail { display: grid; gap: 8px; margin-top: 20px; }
+.feedback-detail div { padding: 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: rgba(255,255,255,.08); }
+.feedback-detail span, .feedback-detail strong { display: block; }
+.feedback-detail span { color: rgba(255,255,255,.65); font-size: .54rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.feedback-detail strong { margin-top: 5px; font-size: .72rem; line-height: 1.4; }
+.earned-card .feedback-detail div { border-color: rgba(32,27,12,.22); background: rgba(255,255,255,.16); }
+.earned-card .feedback-detail span { color: rgba(32,27,12,.6); }
+.empty-card .card-face { background: linear-gradient(145deg,#fffdf8,#f4eee5); color: var(--ink); }
+.empty-card .card-slab i { border-color: #d3ccc1; background: #e8dfd3; }
+.empty-card .card-kicker, .empty-card .card-note { color: var(--muted); }
+
+@media (min-width: 700px) {
+  body { background: #eee8de; }
+  .game-app { min-height: 100vh; box-shadow: 0 0 70px rgba(32,36,48,.12); }
+}

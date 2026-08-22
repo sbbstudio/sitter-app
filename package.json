@@ -1,0 +1,11 @@
+{
+  "name": "sitter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitter — local-first spaced repetition for kids and families",
+  "scripts": {
+    "check": "node --check sitter-app.js && node --check sitter-mechanics.js && node --check sitter-curriculum.js && node --check sitter-curriculum-casper.js && node --check family-game-content.js && node --check family-practice-content.js && node --check family-practice-bootstrap.js && node --check family-game-core.js && node --check family-game-app.js && node --check retention-core.js",
+    "content:validate": "node scripts/validate-sitter-content.mjs",
+    "test": "node --test tests/*.test.js"
+  }
+}

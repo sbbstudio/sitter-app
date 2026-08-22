@@ -10,6 +10,18 @@ Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer alt lok
 
 ---
 
+## 🎮 Prøv det live
+
+**https://sitter-app-review.vercel.app**
+
+- **Sitter (elev)** — https://sitter-app-review.vercel.app/sitter.html
+- **Sitter Familiespill** — https://sitter-app-review.vercel.app/family-game.html
+- **«Er du smartere enn barnet ditt?»** — https://sitter-app-review.vercel.app/family-practice.html
+
+Ingen installasjon, ingen pålogging — åpne på mobil eller nettbrett og prøv.
+
+---
+
 ## Hva prosjektet viser
 
 - **Adaptiv scheduler-design**: en FSRS-inspirert R/S/D-modell (retrievability, stability, difficulty) med 90 % target retention, som lagrer review-logs, responstid og prompt-type slik at scheduler kan byttes til `ts-fsrs` uten å kaste historikken.

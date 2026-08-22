@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "content/**/*.json", "use": "@vercel/static" },
+    { "src": "scripts/*.mjs", "use": "@vercel/static" },
+    { "src": "docs/**/*.md", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/sitter.html" }
+  ]
+}

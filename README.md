@@ -1,6 +1,6 @@
 # Sitter — Spaced Repetition for Kunnskap som Skal Sitte
 
-> **Status: Alpha.** Sitter er i aktiv utvikling og testes med ekte brukere (barn + foreldre). Beta-motoren (Rune Attention) holdes privat. Vi er ærlige om modenhet: alt som er her, er testet — men forvent endringer.
+> **Status: Alpha.** Sitter er i aktiv utvikling og testes med ekte brukere (barn + foreldre). Dette repoet viser Sitter-appen — den mer avanserte Beta-motoren (Rune Attention) finnes, er i privat drift, og holdes privat per design. Vi viser produktet, ikke hele plattformen.
 
 [![CI](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml/badge.svg)](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -34,6 +34,12 @@ Ingen installasjon, ingen pålogging — åpne på mobil eller nettbrett og prø
 - **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (109 tester).
 - **Lokal-først med migrering**: egne localStorage-nøkler per app, data-migrering ved første åpning, backup av siste gyldige state.
 - **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
+
+---
+
+## Beta (privat)
+
+Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift: full FSRS-inspirert adaptiv modell, mastery-spor på tvers av læringsmål, innsikts-analyse og et kvalitetsgater-system for kortinnhold. Den er bevisst ikke åpen — den er plattformen, ikke produktet. Sitter er det vi viser frem.
 
 ---
 

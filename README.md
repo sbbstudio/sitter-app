@@ -1,6 +1,6 @@
 # Sitter — Spaced Repetition for Kunnskap som Skal Sitte
 
-> **Status: Alpha.** Sitter er i aktiv utvikling og testes med ekte brukere (barn + foreldre). Dette repoet viser Sitter-appen — den mer avanserte Beta-motoren (Sitter Vol 10) finnes, er i privat drift, og holdes privat per design. Vi viser produktet, ikke hele plattformen.
+> **Status: Alpha.** Sitter er i aktiv utvikling og testes med ekte brukere (barn + foreldre). Dette repoet viser Sitter-appen — den mer avanserte Beta-motoren (Sitter Vol 4) finnes, er i privat drift, og holdes privat per design. Vi viser produktet, ikke hele plattformen.
 
 [![CI](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml/badge.svg)](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -39,7 +39,7 @@ Ingen installasjon, ingen pålogging — åpne på mobil eller nettbrett og prø
 
 ## Beta (privat)
 
-Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift — vi kaller den Sitter Vol 10: full FSRS-inspirert adaptiv modell, mastery-spor på tvers av læringsmål, innsikts-analyse og et kvalitetsgater-system for kortinnhold. Den er bevisst ikke åpen — den er plattformen, ikke produktet. Sitter er det vi viser frem.
+Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift — vi kaller den Sitter Vol 4: full FSRS-inspirert adaptiv modell, mastery-spor på tvers av læringsmål, innsikts-analyse og et kvalitetsgater-system for kortinnhold. Den er bevisst ikke åpen — den er plattformen, ikke produktet. Sitter er det vi viser frem.
 
 ---
 

@@ -6,6 +6,31 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-110%20passing-brightgreen)]()
 
+## In English
+
+Sitter is a spaced-repetition app for children. It is local-first: no server, no database, no login and no tracking. Progress stays in the browser's `localStorage`.
+
+**Status: Alpha.** A more advanced Beta engine exists in private use and is kept private on purpose. This repository shows the product, not the platform.
+
+What this repository contains:
+
+- **Sitter (student)**: a daily practice flow on mobile for 4th grade.
+- **Sitter Family Game**: a spoken two-player game for a child and an adult on one device.
+- **Practice pilot**: "Are you smarter than your child?", an adult–child quiz for 4th grade.
+- **`retention-core.js`**: one shared scheduler file with no DOM dependency. All three apps load it, and it is tested in Node without a browser.
+
+Run it:
+
+- `npm test` runs 110 tests with Node's built-in test runner (CI uses Node 22).
+- Serve the folder with `python3 -m http.server 4173` and open `http://localhost:4173/sitter.html`.
+- Live demo, no login: https://sitter-app-review.vercel.app/sitter.html
+
+MIT licensed. No dependencies and no build step: plain JavaScript and HTML.
+
+The rest of this README is in Norwegian.
+
+## Hva dette er
+
 En statisk, lokal-først læringsapp for varig recall, bygget for barn og familier:
 
 - **Sitter (elev)**: en mobilflyt for 4. klasse, der et barn øver daglig med korte skriftlige svar.
@@ -13,6 +38,78 @@ En statisk, lokal-først læringsapp for varig recall, bygget for barn og famili
 - **Practice-pilot**: «Er du smartere enn barnet ditt?» — 30 voksen–barn-par for 4. trinn.
 
 Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer fremdrift lokalt i nettleserens `localStorage`. Familiespillet har i tillegg backup av siste gyldige lagring. Sletting av nettleserdata sletter også fremdriften.
+
+### Hva prosjektet viser
+
+- **Adaptiv scheduler-design**: en FSRS-inspirert R/S/D-modell (retrievability, stability, difficulty) med 90 % target retention, som lagrer review-logs, responstid og prompt-type slik at scheduler kan byttes til `ts-fsrs` uten å kaste historikken.
+- **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (110 tester).
+- **Lokal-først med migrering**: egne localStorage-nøkler per app, migrering fra eldre Solo-data og backup av siste gyldige state i familiespillet.
+- **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
+
+## Slik kjører du det
+
+Appen er statisk JavaScript + HTML: ingen byggetrinn, ingen rammeverk, ingen avhengigheter. Bruk Node.js 22 til testene og Python 3 til den lokale serveren.
+
+```bash
+# 1. Klone
+git clone https://github.com/sbbstudio/sitter-app.git
+cd sitter-app
+
+# 2. Kjør statisk server
+python3 -m http.server 4173
+# åpne http://localhost:4173/sitter.html           (Sitter elev-MVP)
+# åpne http://localhost:4173/family-game.html      (Sitter Familiespill)
+# åpne http://localhost:4173/family-practice.html  («Er du smartere enn barnet ditt?»)
+```
+
+Rotadressen `/` sender til `sitter.html` bare på Vercel (`vercel.json`); den lokale serveren viser en filliste der, så åpne `/sitter.html` direkte.
+
+### Sjekk og tester
+
+```bash
+npm run check                  # syntaks-sjekk alle JS-filer i roten
+npm test                       # kjøretidstester (110 tester)
+npm run content:validate       # valider sitter-kortpakken
+```
+
+CI kjører de samme tre kommandoene med Node 22 ved push og pull request mot `main` (`.github/workflows/ci.yml`).
+
+## Mappene
+
+- `.github/` — CI-arbeidsflyten, PR-malen og CODEOWNERS.
+- `content/` — maskinlesbar innholdskilde (essentials, packs, schemas); se `content/README.md`.
+- `docs/` — produktnotater og evidens, og `docs/decisions/` med én fil per beslutning.
+- `scripts/` — `validate-sitter-content.mjs`, innholdsvalideringen bak `npm run content:validate`.
+- `tests/` — kjøretidstester for Nodes innebygde testløper.
+
+Appfilene ligger i roten, fordi Vercel serverer dem direkte som URL-er:
+
+```
+sitter.html                 Sitter elev-MVP (4. klasse, mobilflyt)
+sitter-app.js               elev-app-logikk
+sitter-curriculum.js        kortpakke (generisk)
+sitter-curriculum-casper.js kortpakke (Casper, 4. klasse)
+sitter-mechanics.js         spillmekanikk
+sitter-styles.css           styling for elev-flaten
+family-game.html            Sitter Familiespill (2 spillere, muntlig)
+family-game-base.css        felles grunnstil for familiespillet og practice-piloten
+family-game-core.js         eneste domene-/write-boundary for spillet
+family-game-app.js          spill-app-logikk
+family-game-content.js      spillinnhold
+family-game-styles.css      styling for familiespillet og practice-piloten
+family-practice.html        «Er du smartere enn barnet ditt?»-piloten
+family-practice-bootstrap.js innlastings- og migreringslogikk
+family-practice-content.js  praksisinnhold
+retention-core.js           scheduler, mastery-score, capture-gate (DOM-fri)
+```
+
+Hver sporet rotfil er forklart i [`AGENTS.md`](AGENTS.md).
+
+## Regler og beslutninger
+
+- Lokale regler for mennesker og agenter: [`AGENTS.md`](AGENTS.md). Felles byggeregler ligger utenfor dette repoet; `AGENTS.md` legger bare til.
+- Beslutninger: [`docs/decisions/`](docs/decisions/), én fil per beslutning.
+- Endringer: [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
@@ -25,15 +122,6 @@ Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer fremdri
 - **«Er du smartere enn barnet ditt?»** — https://sitter-app-review.vercel.app/family-practice.html
 
 Ingen installasjon, ingen pålogging — åpne på mobil eller nettbrett og prøv.
-
----
-
-## Hva prosjektet viser
-
-- **Adaptiv scheduler-design**: en FSRS-inspirert R/S/D-modell (retrievability, stability, difficulty) med 90 % target retention, som lagrer review-logs, responstid og prompt-type slik at scheduler kan byttes til `ts-fsrs` uten å kaste historikken.
-- **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (110 tester).
-- **Lokal-først med migrering**: egne localStorage-nøkler per app, migrering fra eldre Solo-data og backup av siste gyldige state i familiespillet.
-- **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
 
 ---
 
@@ -64,7 +152,7 @@ Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift �
 └─────────────────────────────────────────────────────────┘
 ```
 
-Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Nettleseren henter statiske filer, inkludert Practice-kortpakken. Ingen applikasjonsserver eller analyseverktøy mottar læringsdata.
+Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Nettleseren henter statiske filer, inkludert Practice-kortpakken, og gjør ingen kall utenfor egen origin. Ingen applikasjonsserver eller analyseverktøy mottar læringsdata.
 
 ---
 
@@ -77,84 +165,6 @@ Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all stat
 
 ---
 
-## Getting Started (English)
-
-A static, local-first spaced repetition app — no build step, no server, no tracking.
-
-```bash
-# 1. Clone
-git clone https://github.com/sbbstudio/sitter-app.git
-cd sitter-app
-
-# 2. Serve statically
-python3 -m http.server 4173
-# open http://localhost:4173/sitter.html    (start here)
-# open http://localhost:4173/sitter.html    (Sitter kid MVP)
-# open http://localhost:4173/family-game.html  (Family game)
-```
-
-### Checks and tests
-
-```bash
-npm run check              # syntax-check all JS files
-npm test                   # runtime tests for scheduler/storage (110 tests)
-npm run content:validate   # validate the Sitter card pack
-```
-
-**No build step, no framework, no dependencies.** Plain JavaScript + HTML, testable core, local-first storage.
-
----
-
-## Kom i gang (for utviklere)
-
-Appen er statisk JavaScript + HTML, ingen byggetrinn. Bruk Node.js 22 til testene og Python 3 til den lokale serveren. En vanlig Python-server viser en filliste på `/`; åpne `/sitter.html` direkte.
-
-```bash
-# 1. Klone
-git clone https://github.com/sbbstudio/sitter-app.git
-cd sitter-app
-
-# 2. Kjør statisk server
-python3 -m http.server 4173
-# åpne http://localhost:4173/sitter.html
-```
-
-### Sjekk og tester
-
-```bash
-npm run check                  # syntaks-sjekk alle JS-filer
-npm test                       # kjøretidstester (110 tester)
-npm run content:validate       # valider sitter-kortpakken
-```
-
----
-
-## Prosjektstruktur
-
-```
-sitter.html                 Sitter elev-MVP (4. klasse, mobilflyt)
-sitter-app.js               elev-app-logikk
-sitter-curriculum.js        kortpakke (generisk)
-sitter-curriculum-casper.js kortpakke (Casper, 4. klasse)
-sitter-mechanics.js         spillmekanikk
-sitter-styles.css           styling for elev-flaten
-family-game.html            Sitter Familiespill (2 spillere, muntlig)
-family-game-base.css        felles grunnstil for familiespill og Practice
-family-game-core.js         eneste domene-/write-boundary for spillet
-family-game-app.js          spill-app-logikk
-family-game-content.js      spillinnhold
-family-practice.html        «Er du smartere enn barnet ditt?»-piloten
-family-practice-bootstrap.js innlastings- og migreringslogikk
-family-practice-content.js  praksisinnhold
-retention-core.js           scheduler, mastery-score, capture-gate (DOM-fri)
-content/                    maskinlesbar innholdskilde (essentials, packs, schemas)
-docs/                       produktnotater og evidens
-tests/                      kjøretidstester
-scripts/validate-sitter-content.mjs  innholdsvalidering
-```
-
----
-
 ## Kjerneapplikasjonene
 
 ### Sitter (elev-MVP)
@@ -162,8 +172,8 @@ scripts/validate-sitter-content.mjs  innholdsvalidering
 Den aktive elev-appen ligger i `sitter.html`, avgrenset til 4. klasse, med den godkjente mobilflyten: Hjem → Dagens økt → Riktig / nesten / feil → Ferdig for i dag → Langtidsminne → Oppgavehistorikk → Oppfølging.
 
 ```bash
-python3 -m http.server 4174
-# åpne http://localhost:4174/sitter.html
+python3 -m http.server 4173
+# åpne http://localhost:4173/sitter.html
 ```
 
 Sitter bruker samme scheduler som hovedappen, men har egen styling, egen kortpakke og egen localStorage-nøkkel (`sitter-mvp-v1`). Ved første åpning migreres relevante data fra den tidligere `casper-quest-retention-v1`-nøkkelen uten å slette originalen.
@@ -177,9 +187,9 @@ Family Game bruker `family-game-core.js` som eneste domene-/write-boundary og eg
 Practice-piloten «Er du smartere enn barnet ditt?» ligger separat i `family-practice.html` med egen snapshot-nøkkel.
 
 ```bash
-python3 -m http.server 4177
-# åpne http://localhost:4177/family-game.html
-# eller http://localhost:4177/family-practice.html
+python3 -m http.server 4173
+# åpne http://localhost:4173/family-game.html
+# eller http://localhost:4173/family-practice.html
 ```
 
 ---

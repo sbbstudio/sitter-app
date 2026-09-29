@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml/badge.svg)](https://github.com/sbbstudio/sitter-app/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Tests](https://img.shields.io/badge/tests-109%20passing-brightgreen)]()
+[![Tests](https://img.shields.io/badge/tests-110%20passing-brightgreen)]()
 
 ## In English
 
@@ -21,7 +21,7 @@ What this repository contains:
 
 Run it:
 
-- `npm test` runs 109 tests with Node's built-in test runner (CI uses Node 22).
+- `npm test` runs 110 tests with Node's built-in test runner (CI uses Node 22).
 - Serve the folder with `python3 -m http.server 4173` and open `http://localhost:4173/sitter.html`.
 - Live demo, no login: https://sitter-app-review.vercel.app/sitter.html
 
@@ -33,22 +33,22 @@ The rest of this README is in Norwegian.
 
 En statisk, lokal-først læringsapp for varig recall, bygget for barn og familier:
 
-- **Sitter (elev)**: en mobilflyt for 4. klasse, der et barn øver daglig uten å måtte skrive.
+- **Sitter (elev)**: en mobilflyt for 4. klasse, der et barn øver daglig med korte skriftlige svar.
 - **Sitter Familiespill**: to-spiller, muntlig på samme enhet (barn + voksen), med læringsevidens per læringsmål.
 - **Practice-pilot**: «Er du smartere enn barnet ditt?» — 30 voksen–barn-par for 4. trinn.
 
-Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer alt lokalt i nettleseren via en liten vault-wrapper rundt `localStorage`.
+Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer fremdrift lokalt i nettleserens `localStorage`. Familiespillet har i tillegg backup av siste gyldige lagring. Sletting av nettleserdata sletter også fremdriften.
 
 ### Hva prosjektet viser
 
 - **Adaptiv scheduler-design**: en FSRS-inspirert R/S/D-modell (retrievability, stability, difficulty) med 90 % target retention, som lagrer review-logs, responstid og prompt-type slik at scheduler kan byttes til `ts-fsrs` uten å kaste historikken.
-- **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (109 tester).
-- **Lokal-først med migrering**: egne localStorage-nøkler per app, data-migrering ved første åpning, backup av siste gyldige state.
+- **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (110 tester).
+- **Lokal-først med migrering**: egne localStorage-nøkler per app, migrering fra eldre Solo-data og backup av siste gyldige state i familiespillet.
 - **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
 
 ## Slik kjører du det
 
-Appen er statisk JavaScript + HTML: ingen byggetrinn, ingen rammeverk, ingen avhengigheter.
+Appen er statisk JavaScript + HTML: ingen byggetrinn, ingen rammeverk, ingen avhengigheter. Bruk Node.js 22 til testene og Python 3 til den lokale serveren.
 
 ```bash
 # 1. Klone
@@ -62,13 +62,13 @@ python3 -m http.server 4173
 # åpne http://localhost:4173/family-practice.html  («Er du smartere enn barnet ditt?»)
 ```
 
-Rotadressen `/` sender til `sitter.html` bare på Vercel (`vercel.json`); den lokale serveren viser en filliste der.
+Rotadressen `/` sender til `sitter.html` bare på Vercel (`vercel.json`); den lokale serveren viser en filliste der, så åpne `/sitter.html` direkte.
 
 ### Sjekk og tester
 
 ```bash
 npm run check                  # syntaks-sjekk alle JS-filer i roten
-npm test                       # kjøretidstester (109 tester)
+npm test                       # kjøretidstester (110 tester)
 npm run content:validate       # valider sitter-kortpakken
 ```
 
@@ -92,6 +92,7 @@ sitter-curriculum-casper.js kortpakke (Casper, 4. klasse)
 sitter-mechanics.js         spillmekanikk
 sitter-styles.css           styling for elev-flaten
 family-game.html            Sitter Familiespill (2 spillere, muntlig)
+family-game-base.css        felles grunnstil for familiespillet og practice-piloten
 family-game-core.js         eneste domene-/write-boundary for spillet
 family-game-app.js          spill-app-logikk
 family-game-content.js      spillinnhold
@@ -151,7 +152,7 @@ Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift �
 └─────────────────────────────────────────────────────────┘
 ```
 
-Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Ingen kall utenfor egen origin, ingen server, ingen sporbarhet utenfor enheten.
+Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Nettleseren henter statiske filer, inkludert Practice-kortpakken, og gjør ingen kall utenfor egen origin. Ingen applikasjonsserver eller analyseverktøy mottar læringsdata.
 
 ---
 

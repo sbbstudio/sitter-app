@@ -14,3 +14,7 @@ Merkbare endringer i Sitter står her, nyeste først. Formatet følger [Keep a C
 ### Endret
 
 - README har de fire faste overskriftene på norsk, og alle lokale adresser bruker port 4173.
+
+### Rettet
+
+- Familiespillet og practice-piloten mistet grunnstilen på Vercel, fordi `family-game-styles.css` importerte den fra `docs/prototypes/`, som ga 404. Grunnstilen ligger nå i `family-game-base.css` i roten, og den nye testen `tests/static-assets.test.js` sjekker at alle lokale skript og stiler sidene laster finnes.

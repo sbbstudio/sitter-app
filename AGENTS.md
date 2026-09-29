@@ -39,6 +39,7 @@ Familiespill og practice-pilot:
 - `family-game-core.js` — eneste domene- og write-boundary for spillet; brukes også av practice-piloten.
 - `family-game-app.js` — spill-app-logikk.
 - `family-game-content.js` — spillinnhold.
+- `family-game-base.css` — grunnstilen som `family-game-styles.css` importerer; ligger i roten så Vercel serverer den.
 - `family-game-styles.css` — styling for familiespillet og practice-piloten.
 - `family-practice-bootstrap.js` — innlastings- og migreringslogikk for practice-piloten.
 - `family-practice-content.js` — praksisinnhold.

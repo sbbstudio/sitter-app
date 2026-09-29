@@ -3,3 +3,4 @@
 .scrape-cache/
 assets/scraped/
 .vercel
+node_modules/

@@ -4,9 +4,9 @@ Lokale regler for alle som endrer dette repoet, mennesker og agenter. Felles byg
 
 ## Mappene
 
-- `.github/` — CI-arbeidsflyten (`workflows/ci.yml`).
+- `.github/` — CI-arbeidsflyten (`workflows/ci.yml`), PR-malen og CODEOWNERS.
 - `content/` — maskinlesbar innholdskilde (essentials, packs, schemas); se `content/README.md`.
-- `docs/` — produktnotater og evidens.
+- `docs/` — produktnotater og evidens, og `docs/decisions/` med én fil per beslutning.
 - `scripts/` — innholdsvalideringen bak `npm run content:validate`.
 - `tests/` — kjøretidstester for `node --test`.
 
@@ -47,7 +47,7 @@ Oppsett:
 
 - `package.json` — skriptene `check`, `test` og `content:validate`; ingen avhengigheter.
 - `vercel.json` — hvilke filer Vercel serverer statisk, og at `/` går til `sitter.html`.
-- `.gitignore` — ignorerte filer (miljøfiler, `.vercel`, skrapte filer og skrape-cache).
+- `.gitignore` — ignorerte filer (miljøfiler, `.vercel`, skrapte filer, skrape-cache og `node_modules/`).
 - `.env.example` — mal for miljøvariabler (`TAVILY_API_KEY`).
 
 Dokumenter:
@@ -55,6 +55,7 @@ Dokumenter:
 - `README.md` — hva dette er, hvordan det kjøres, mappene, regler.
 - `AGENTS.md` — denne fila.
 - `CLAUDE.md` — importerer denne fila.
+- `CHANGELOG.md` — merkbare endringer, nyeste først.
 - `LICENSE` — MIT-lisensen.
 
 ## Store filer

@@ -95,6 +95,7 @@ family-game.html            Sitter Familiespill (2 spillere, muntlig)
 family-game-core.js         eneste domene-/write-boundary for spillet
 family-game-app.js          spill-app-logikk
 family-game-content.js      spillinnhold
+family-game-styles.css      styling for familiespillet og practice-piloten
 family-practice.html        «Er du smartere enn barnet ditt?»-piloten
 family-practice-bootstrap.js innlastings- og migreringslogikk
 family-practice-content.js  praksisinnhold

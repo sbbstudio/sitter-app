@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const Mechanics = require("../sitter-mechanics.js");
+const Mechanics = require("../app/sitter/sitter-mechanics.js");
 
 function card(overrides = {}) {
   return {

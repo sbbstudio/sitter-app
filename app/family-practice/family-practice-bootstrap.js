@@ -17,7 +17,7 @@
     window.FAMILY_GAME_CONTENT = window.FamilyPracticeContent.createContent(pack, collection);
     if (typeof window.createFamilyGameCore !== "function") throw new Error("Spillmotoren mangler.");
     window.FamilyGameCore = window.createFamilyGameCore(window.FAMILY_GAME_CONTENT);
-    await import("./family-game-app.js?v=2");
+    await import("../family-game/family-game-app.js?v=2");
   } catch (error) {
     fail(error.message || "Ukjent feil.");
   }

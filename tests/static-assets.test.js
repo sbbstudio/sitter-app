@@ -12,10 +12,13 @@ test('all three entry points include their local scripts and styles', () => {
     if (seen.has(file)) return;
     seen.add(file);
     const source = fs.readFileSync(file, 'utf8');
+    // Dynamisk import() i et script løses mot scriptets egen URL, ikke sidens.
     const pattern = file.endsWith('.html')
       ? /(?:src|href)=["']([^"']+)["']/g
-      : /(?:url\(\s*["']?([^\s"')]+)["']?\s*\)|@import\s+["']([^"']+)["'])/g;
-    if (!/\.(html|css)$/.test(file)) return;
+      : file.endsWith('.js')
+        ? /import\(\s*["']([^"']+)["']\s*\)/g
+        : /(?:url\(\s*["']?([^\s"')]+)["']?\s*\)|@import\s+["']([^"']+)["'])/g;
+    if (!/\.(html|css|js)$/.test(file)) return;
     for (const match of source.matchAll(pattern)) {
       const ref = match[1] || match[2];
       if (/^(?:[a-z]+:|\/\/|#)/i.test(ref)) continue;

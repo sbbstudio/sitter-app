@@ -8,7 +8,7 @@ Target buyer/user decision-maker: parents.
 
 Target learner for the MVP: Norwegian students in 4th grade. Grades 1-10 remain the longer product direction, not the validation scope.
 
-Architecture decision: keep Rune Retention OS intact. The active student MVP is the separate static entry `sitter.html`, which reuses `retention-core.js` but owns its curriculum, styling and localStorage key. `kid.html` is retained temporarily as a regression reference.
+Architecture decision: keep Rune Retention OS intact. The active student MVP is the separate static entry `sitter.html`, which reuses `core/retention-core.js` but owns its curriculum, styling and localStorage key. `kid.html` is retained temporarily as a regression reference.
 
 ## Curriculum Source
 
@@ -68,9 +68,9 @@ MVP adaptation:
 ## Current MVP Files
 
 - `sitter.html`
-- `sitter-styles.css`
-- `sitter-app.js`
-- `sitter-curriculum.js`
+- `app/sitter/sitter-styles.css`
+- `app/sitter/sitter-app.js`
+- `app/sitter/sitter-curriculum.js`
 - `tests/sitter-mvp.test.js`
 
 Legacy regression files:

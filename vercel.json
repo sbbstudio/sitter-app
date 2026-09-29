@@ -2,8 +2,9 @@
   "version": 2,
   "builds": [
     { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "core/*.js", "use": "@vercel/static" },
+    { "src": "app/**/*.js", "use": "@vercel/static" },
+    { "src": "app/**/*.css", "use": "@vercel/static" },
     { "src": "content/**/*.json", "use": "@vercel/static" },
     { "src": "scripts/*.mjs", "use": "@vercel/static" },
     { "src": "docs/**/*.md", "use": "@vercel/static" }

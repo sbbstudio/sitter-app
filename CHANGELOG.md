@@ -13,6 +13,7 @@ Merkbare endringer i Sitter står her, nyeste først. Formatet følger [Keep a C
 
 ### Endret
 
+- Kildefilene er flyttet fra roten til `core/` og `app/` (`app/sitter/`, `app/family-game/`, `app/family-practice/`); de tre HTML-sidene ligger fortsatt i roten, og roten har nå 15 sporede filer. Se `docs/decisions/0002-kildekode-i-mapper.md`.
 - README har de fire faste overskriftene på norsk, og alle lokale adresser bruker port 4173.
 
 ### Rettet

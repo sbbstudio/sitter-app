@@ -2,8 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const Core = require("../family-game-core.js");
-const Content = require("../family-game-content.js");
+const Core = require("../app/family-game/family-game-core.js");
+const Content = require("../app/family-game/family-game-content.js");
 
 const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
@@ -248,8 +248,8 @@ test("whole-snapshot storage falls back without partial learner writes", () => {
 test("Family Game is a separate entry point and never uses the Sitter Solo storage key", () => {
   const root = path.join(__dirname, "..");
   const solo = fs.readFileSync(path.join(root, "sitter.html"), "utf8");
-  const family = fs.readFileSync(path.join(root, "family-game-core.js"), "utf8");
-  assert.match(solo, /sitter-app\.js/);
+  const family = fs.readFileSync(path.join(root, "app/family-game/family-game-core.js"), "utf8");
+  assert.match(solo, /app\/sitter\/sitter-app\.js/);
   assert.match(family, /sitter-family-game-v1/);
   assert.equal(family.includes('"sitter-mvp-v1"'), false);
 });
@@ -257,11 +257,11 @@ test("Family Game is a separate entry point and never uses the Sitter Solo stora
 test("mobile entry point is oral-only and loads the approved Family Game boundaries", () => {
   const root = path.join(__dirname, "..");
   const html = fs.readFileSync(path.join(root, "family-game.html"), "utf8");
-  const app = fs.readFileSync(path.join(root, "family-game-app.js"), "utf8");
-  const css = fs.readFileSync(path.join(root, "family-game-styles.css"), "utf8");
-  assert.match(html, /family-game-content\.js/);
-  assert.match(html, /family-game-core\.js/);
-  assert.match(html, /family-game-app\.js/);
+  const app = fs.readFileSync(path.join(root, "app/family-game/family-game-app.js"), "utf8");
+  const css = fs.readFileSync(path.join(root, "app/family-game/family-game-styles.css"), "utf8");
+  assert.match(html, /app\/family-game\/family-game-content\.js/);
+  assert.match(html, /app\/family-game\/family-game-core\.js/);
+  assert.match(html, /app\/family-game\/family-game-app\.js/);
   assert.equal(/<textarea|<input/i.test(html), false);
   assert.equal(/<select/i.test(html), false);
   assert.match(app, /Si svaret høyt/);
@@ -272,7 +272,7 @@ test("mobile entry point is oral-only and loads the approved Family Game boundar
 });
 
 test("production UI exposes help, reveal, steal, comeback and learning-first result copy", () => {
-  const app = fs.readFileSync(path.join(__dirname, "..", "family-game-app.js"), "utf8");
+  const app = fs.readFileSync(path.join(__dirname, "..", "app/family-game/family-game-app.js"), "utf8");
   for (const phrase of ["Hjelp meg", "Vis meg", "Stjel sjansen", "Opptjent comeback", "Dette lærte Casper"]) {
     assert.match(app, new RegExp(phrase), phrase);
   }

@@ -5,7 +5,12 @@ Lokale regler for alle som endrer dette repoet, mennesker og agenter. Felles byg
 ## Mappene
 
 - `.github/` — CI-arbeidsflyten (`workflows/ci.yml`), PR-malen og CODEOWNERS.
+- `app/` — kildefilene sidene laster, én undermappe per app:
+  - `app/sitter/` — Sitter (elev).
+  - `app/family-game/` — familiespillet; `family-game-core.js` og stilene brukes også av practice-piloten.
+  - `app/family-practice/` — practice-piloten.
 - `content/` — maskinlesbar innholdskilde (essentials, packs, schemas); se `content/README.md`.
+- `core/` — delt kjerne som alle tre sidene laster.
 - `docs/` — produktnotater og evidens, og `docs/decisions/` med én fil per beslutning.
 - `scripts/` — innholdsvalideringen bak `npm run content:validate`.
 - `tests/` — kjøretidstester for `node --test`.
@@ -14,35 +19,13 @@ Ingen nye løse filer i roten. En ny fil legges i en av mappene over; passer ing
 
 ## Rotfilene
 
-Roten har flere enn 15 filer med vilje: Vercel serverer HTML-, JS- og CSS-filene i roten direkte (`vercel.json`), og sidene laster hverandres filer med relative stier. Flytter du dem, endres de offentlige URL-ene og lenkene mellom filene.
+Roten har 15 sporede filer: de tre sidene, oppsettet og dokumentene. Sidene ligger i roten fordi Vercel serverer dem som offentlige URL-er (`vercel.json`); kildefilene de laster ligger i `core/` og `app/`.
 
 Sider:
 
 - `sitter.html` — Sitter elev-MVP (4. klasse, mobilflyt). Vercel sender `/` hit.
 - `family-game.html` — Sitter Familiespill (2 spillere, muntlig).
 - `family-practice.html` — practice-piloten «Er du smartere enn barnet ditt?».
-
-Delt kjerne:
-
-- `retention-core.js` — scheduler, mastery-score og capture-gate, uten DOM. Alle tre sidene laster den.
-
-Sitter (elev):
-
-- `sitter-app.js` — elev-app-logikk.
-- `sitter-mechanics.js` — spillmekanikk.
-- `sitter-curriculum.js` — kortpakke (generisk).
-- `sitter-curriculum-casper.js` — kortpakke (Casper, 4. klasse).
-- `sitter-styles.css` — styling for elev-flaten.
-
-Familiespill og practice-pilot:
-
-- `family-game-core.js` — eneste domene- og write-boundary for spillet; brukes også av practice-piloten.
-- `family-game-app.js` — spill-app-logikk.
-- `family-game-content.js` — spillinnhold.
-- `family-game-base.css` — grunnstilen som `family-game-styles.css` importerer; ligger i roten så Vercel serverer den.
-- `family-game-styles.css` — styling for familiespillet og practice-piloten.
-- `family-practice-bootstrap.js` — innlastings- og migreringslogikk for practice-piloten.
-- `family-practice-content.js` — praksisinnhold.
 
 Oppsett:
 
@@ -62,15 +45,42 @@ Dokumenter:
 - `CHANGELOG.md` — merkbare endringer, nyeste først.
 - `LICENSE` — MIT-lisensen.
 
+## Kildefilene
+
+`core/` — delt kjerne:
+
+- `retention-core.js` — scheduler, mastery-score og capture-gate, uten DOM. Alle tre sidene laster den.
+
+`app/sitter/` — Sitter (elev):
+
+- `sitter-app.js` — elev-app-logikk.
+- `sitter-mechanics.js` — spillmekanikk.
+- `sitter-curriculum.js` — kortpakke (generisk).
+- `sitter-curriculum-casper.js` — kortpakke (Casper, 4. klasse).
+- `sitter-styles.css` — styling for elev-flaten.
+
+`app/family-game/` — familiespillet:
+
+- `family-game-core.js` — eneste domene- og write-boundary for spillet; brukes også av practice-piloten.
+- `family-game-app.js` — spill-app-logikk.
+- `family-game-content.js` — spillinnhold.
+- `family-game-base.css` — grunnstilen som `family-game-styles.css` importerer fra samme mappe.
+- `family-game-styles.css` — styling for familiespillet og practice-piloten.
+
+`app/family-practice/` — practice-piloten:
+
+- `family-practice-bootstrap.js` — innlastings- og migreringslogikk for practice-piloten.
+- `family-practice-content.js` — praksisinnhold.
+
 ## Store filer
 
-Ingen sporede filer over 1 MB. Den største er `retention-core.js`, rundt 100 kB.
+Ingen sporede filer over 1 MB. Den største er `core/retention-core.js`, rundt 100 kB.
 
 ## Regler
 
 - Appen er statisk: ingen byggetrinn, ingen rammeverk, ingen avhengigheter. Filene serveres slik de ligger i git.
 - Før en PR: `npm run check`, `npm test` og `npm run content:validate` skal gå grønt. CI kjører de samme tre.
-- `retention-core.js` deles av alle tre appene; en endring der treffer alle tre.
+- `core/retention-core.js` deles av alle tre appene; en endring der treffer alle tre.
 - Ikke finn på tall. Testtall, antall spørsmål og lignende i README skal stemme med det kommandoene over skriver ut.
 - Spørsmålsordlyd gjennomgås i `content/` først; se `content/README.md`.
 - Prettier kjøres aldri på hele filer i en PR som endrer logikk; en eventuell omformatering får egen PR.

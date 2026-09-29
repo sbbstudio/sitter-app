@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const Core = require("../retention-core.js");
+const Core = require("../core/retention-core.js");
 
 const NOW = 1_800_000_000_000;
 

@@ -17,7 +17,7 @@ What this repository contains:
 - **Sitter (student)**: a daily practice flow on mobile for 4th grade.
 - **Sitter Family Game**: a spoken two-player game for a child and an adult on one device.
 - **Practice pilot**: "Are you smarter than your child?", an adult–child quiz for 4th grade.
-- **`retention-core.js`**: one shared scheduler file with no DOM dependency. All three apps load it, and it is tested in Node without a browser.
+- **`core/retention-core.js`**: one shared scheduler file with no DOM dependency. All three apps load it, and it is tested in Node without a browser.
 
 Run it:
 
@@ -42,7 +42,7 @@ Ingen server, ingen database, ingen tracking. Appen er statisk og lagrer fremdri
 ### Hva prosjektet viser
 
 - **Adaptiv scheduler-design**: en FSRS-inspirert R/S/D-modell (retrievability, stability, difficulty) med 90 % target retention, som lagrer review-logs, responstid og prompt-type slik at scheduler kan byttes til `ts-fsrs` uten å kaste historikken.
-- **Testbar arkitektur**: kjernen (`retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (110 tester).
+- **Testbar arkitektur**: kjernen (`core/retention-core.js`) er frikoblet fra DOM — scheduleren og innholdslogikken er testbare uten nettleser (110 tester).
 - **Lokal-først med migrering**: egne localStorage-nøkler per app, migrering fra eldre Solo-data og backup av siste gyldige state i familiespillet.
 - **Produkttenkning for barn**: muntlig spill, ingen skriving, append-only læringsevidens per læringsmål, foreldre som driver.
 
@@ -67,7 +67,7 @@ Rotadressen `/` sender til `sitter.html` bare på Vercel (`vercel.json`); den lo
 ### Sjekk og tester
 
 ```bash
-npm run check                  # syntaks-sjekk alle JS-filer i roten
+npm run check                  # syntaks-sjekk alle JS-filer i core/ og app/
 npm test                       # kjøretidstester (110 tester)
 npm run content:validate       # valider sitter-kortpakken
 ```
@@ -77,30 +77,36 @@ CI kjører de samme tre kommandoene med Node 22 ved push og pull request mot `ma
 ## Mappene
 
 - `.github/` — CI-arbeidsflyten, PR-malen og CODEOWNERS.
+- `app/` — appfilene per side: `app/sitter/`, `app/family-game/` og `app/family-practice/`.
 - `content/` — maskinlesbar innholdskilde (essentials, packs, schemas); se `content/README.md`.
+- `core/` — `retention-core.js`, den DOM-frie kjernen alle tre sidene laster.
 - `docs/` — produktnotater og evidens, og `docs/decisions/` med én fil per beslutning.
 - `scripts/` — `validate-sitter-content.mjs`, innholdsvalideringen bak `npm run content:validate`.
 - `tests/` — kjøretidstester for Nodes innebygde testløper.
 
-Appfilene ligger i roten, fordi Vercel serverer dem direkte som URL-er:
+De tre sidene ligger i roten, fordi Vercel serverer dem direkte som URL-er. Kildefilene de laster ligger i `core/` og `app/`:
 
 ```
-sitter.html                 Sitter elev-MVP (4. klasse, mobilflyt)
-sitter-app.js               elev-app-logikk
-sitter-curriculum.js        kortpakke (generisk)
-sitter-curriculum-casper.js kortpakke (Casper, 4. klasse)
-sitter-mechanics.js         spillmekanikk
-sitter-styles.css           styling for elev-flaten
-family-game.html            Sitter Familiespill (2 spillere, muntlig)
-family-game-base.css        felles grunnstil for familiespillet og practice-piloten
-family-game-core.js         eneste domene-/write-boundary for spillet
-family-game-app.js          spill-app-logikk
-family-game-content.js      spillinnhold
-family-game-styles.css      styling for familiespillet og practice-piloten
-family-practice.html        «Er du smartere enn barnet ditt?»-piloten
-family-practice-bootstrap.js innlastings- og migreringslogikk
-family-practice-content.js  praksisinnhold
-retention-core.js           scheduler, mastery-score, capture-gate (DOM-fri)
+sitter.html                    Sitter elev-MVP (4. klasse, mobilflyt)
+family-game.html               Sitter Familiespill (2 spillere, muntlig)
+family-practice.html           «Er du smartere enn barnet ditt?»-piloten
+core/
+  retention-core.js            scheduler, mastery-score, capture-gate (DOM-fri)
+app/sitter/
+  sitter-app.js                elev-app-logikk
+  sitter-curriculum.js         kortpakke (generisk)
+  sitter-curriculum-casper.js  kortpakke (Casper, 4. klasse)
+  sitter-mechanics.js          spillmekanikk
+  sitter-styles.css            styling for elev-flaten
+app/family-game/
+  family-game-base.css         felles grunnstil for familiespillet og practice-piloten
+  family-game-core.js          eneste domene-/write-boundary for spillet
+  family-game-app.js           spill-app-logikk
+  family-game-content.js       spillinnhold
+  family-game-styles.css       styling for familiespillet og practice-piloten
+app/family-practice/
+  family-practice-bootstrap.js innlastings- og migreringslogikk
+  family-practice-content.js   praksisinnhold
 ```
 
 Hver sporet rotfil er forklart i [`AGENTS.md`](AGENTS.md).
@@ -137,11 +143,11 @@ Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift �
 ┌─────────────────────────────────────────────────────────┐
 │                    Sitter (elev-MVP)                      │
 │  sitter.html → sitter-app.js → sitter-mechanics.js      │
-│  kortpakker: sitter-curriculum*.js                       │
+│  i app/sitter/; kortpakker: sitter-curriculum*.js       │
 └──────────────────────────┬──────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────┐
-│               retention-core.js (DOM-fri)                │
+│            core/retention-core.js (DOM-fri)             │
 │  scheduler · mastery-score · capture-gate · policy       │
 │  ← testbar uten nettleser (node --test)                  │
 └──────────────────────────┬──────────────────────────────┘

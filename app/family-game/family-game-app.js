@@ -1,3 +1,11 @@
+/*
+ * Family Game UI for family-game.html and family-practice.html: setup, oral turns,
+ * help, reveal, steal, judging and the result screen. It holds no game rules: every
+ * change goes through window.FamilyGameCore and is saved as a whole snapshot with
+ * createGameStorage before the next screen. The storage key comes from the content
+ * (Content.storeKey), so the practice pilot keeps its own snapshot; ?reset=1 clears
+ * the local snapshot on load.
+ */
 (function startFamilyGame() {
   const Core = window.FamilyGameCore;
   const Content = window.FAMILY_GAME_CONTENT;
@@ -50,6 +58,8 @@
     return Core.getMatch(state);
   }
 
+  // A failed save tells the player and throws, so the UI never continues on a state
+  // that was not stored.
   function persist(nextState) {
     const result = storage.save(nextState);
     if (!result.ok) {

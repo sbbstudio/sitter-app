@@ -10,6 +10,7 @@ Merkbare endringer i Sitter står her, nyeste først. Formatet følger [Keep a C
 - `docs/decisions/`, som starter med beslutningen om en statisk app servert fra roten uten byggetrinn.
 - PR-mal og CODEOWNERS.
 - `.prettierrc`, `.editorconfig` og `package-lock.json`.
+- Forklaringer i koden på engelsk: modulhode i alle 13 kildefiler i `core/` og `app/`, kontrakter ved de viktige funksjonene og hvorfor-kommentarer ved vern og invarianter. Ingen logikk er endret.
 
 ### Endret
 

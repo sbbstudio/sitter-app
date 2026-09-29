@@ -1,3 +1,9 @@
+/*
+ * Standard Sitter card pack (4th grade, Udir LK20 / Grep), the default pack in
+ * sitter.html, exposed as window.SITTER_CURRICULUM. Plain data; evaluateSitterAnswer
+ * in sitter-app.js reads each card's answer fields. Saved progress is keyed by card
+ * id, so changing an id resets that card.
+ */
 const SITTER_CURRICULUM = {
   version: 6,
   title: "Sitter — 4. klasse",

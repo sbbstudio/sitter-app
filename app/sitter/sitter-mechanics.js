@@ -1,3 +1,11 @@
+/*
+ * Sitter's own review ladder and session queue. sitter-app.js schedules with this
+ * module, not with RetentionCore.scheduleReview. Five steps: now, 1 hour, 1 day,
+ * 1 week and 30 days ("Sitter", the card sits). Tests call it the locked ladder
+ * (tests/sitter-mechanics.test.js).
+ * Pure functions with no DOM or storage; loads as window.SitterMechanics, or via
+ * require() in tests.
+ */
 (function initSitterMechanics(root, factory) {
   const mechanics = factory();
   if (typeof module === "object" && module.exports) module.exports = mechanics;
@@ -19,6 +27,12 @@
     return Math.max(0, Math.min(STAGES.length - 1, Math.trunc(value)));
   }
 
+  /**
+   * Maps a stage on RetentionCore's nine-step ladder (0-8) to the Sitter step at or
+   * below the old interval: 1 hour stays 1 hour, 1-3 days become 1 day, 1-2 weeks
+   * become 1 week, 1 month or more becomes Sitter. A migrated card never gets a
+   * longer interval than it had earned.
+   */
   function migrateLegacyStage(stage) {
     const value = Math.max(0, Number(stage) || 0);
     if (value >= 6) return 4;
@@ -45,6 +59,17 @@
     return "answer_correct_standard";
   }
 
+  /**
+   * Applies one answer and returns { card, intervalMs, oldStage, nextStage,
+   * promoted, requeue, rewardEvent }. The input card is not mutated.
+   *
+   * Only "good" and "easy" are correct and climb one step ("easy" gets no extra
+   * step here). "hard" (a near answer) and "again" both reset to step 0 with
+   * dueAt = now and set `requeue`, so the session asks again after a gap (insertRetry).
+   * The last step is the ceiling: a correct answer there stays with a new 30-day
+   * interval; a miss there is recorded as `lostSitting` in history.
+   * History keeps the last 60 entries, responseTimes the last 20.
+   */
   function scheduleReview(card, grade, options = {}) {
     const now = Number(options.now ?? Date.now());
     const responseMs = Math.max(0, Number(options.responseMs || 0));
@@ -114,12 +139,19 @@
     return items;
   }
 
+  /**
+   * Picks up to `target` due cards, most overdue first, and returns their ids in
+   * shuffled order. Uses the real clock to decide what is due; sitter-app.js passes
+   * cards it has already filtered as due.
+   */
   function buildSessionBag(cards, target, random = Math.random) {
     const limit = Math.max(0, Math.min(Number(target) || 0, cards.length));
     const prioritySet = dueCards(cards).slice(0, limit);
     return shuffle(prioritySet.map((card) => card.id), random);
   }
 
+  // Puts a missed card back `minimumGap` places after the current one, so other cards come
+  // before the retry (test "Failed cards return after a gap instead of repeating immediately").
   function insertRetry(cardIds, currentIndex, cardId, minimumGap = 2) {
     const queue = [...cardIds];
     const gap = Math.max(0, Number(minimumGap) || 0);

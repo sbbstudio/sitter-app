@@ -1,3 +1,19 @@
+// Shared: the retention engine for all three Sitter pages (sitter.html, family-game.html, family-practice.html).
+/*
+ * DOM-free and storage-free: card normalization, the review scheduler, answer
+ * coverage and proof gates, mastery metrics and planning helpers. Callers own
+ * persistence; most functions take `now` so results are deterministic in tests.
+ *
+ * Loads as `module.exports` in Node (tests) and `globalThis.RetentionCore` in the
+ * browser. The pages use a small slice: Sitter calls `normalizeCard` and schedules
+ * with its own five-step ladder (app/sitter/sitter-mechanics.js); the family game
+ * calls `scheduleReview` and `INTERVALS` through its retention adapter
+ * (app/family-game/family-game-core.js). The rest of the API comes from the
+ * Rune Retention OS engine this file was reused from (docs/child-mvp-notes.md);
+ * the pages do not call it, and tests/retention-core.test.js covers it.
+ *
+ * A change here reaches all three pages.
+ */
 (function initRetentionCore(root, factory) {
   const core = factory();
   if (typeof module === "object" && module.exports) {
@@ -425,6 +441,7 @@
     }
   ];
 
+  // "hard" (Slet) counts as a pass: the README defines it as correct but shaky.
   const PASSING_GRADES = new Set(["hard", "good", "easy"]);
   const MAX_STABILITY_DAYS = INTERVALS[INTERVALS.length - 1].ms / DAY;
   const MIN_STABILITY_DAYS = INTERVALS[0].ms / DAY;
@@ -500,6 +517,16 @@
     return "Definition";
   }
 
+  /**
+   * Returns a copy of `card` with every scheduler field present and typed; unknown
+   * fields are kept and the input is not mutated. Call it before any other function
+   * here that reads stage, reps or dueAt.
+   *
+   * An id that fails `safeId` is replaced with `options.createId()`, so an imported
+   * id cannot carry markup (see the onclick case in tests/retention-core.test.js).
+   * `difficulty` and `stabilityDays` stay null until the first scheduled review;
+   * `storedDifficulty` and `stabilityMs` then derive a value from reps, lapses and history.
+   */
   function normalizeCard(card, options = {}) {
     const now = options.now ?? Date.now();
     const createId = options.createId || fallbackId;
@@ -566,6 +593,12 @@
     return Number.isFinite(card.difficulty) ? round1(clamp(card.difficulty, 1, 10)) : difficultyScore(card);
   }
 
+  /**
+   * Probability of recall now: TARGET_RETENTION ^ (elapsed / stability), clamped to
+   * [0.05, 0.99]. At elapsed = stability the estimate equals the 90 % target, which
+   * is what makes `stabilityDays` mean "days until recall drops to 90 %".
+   * Returns null for a card that has never been reviewed.
+   */
   function estimateRetrievability(card, now = Date.now()) {
     const normalized = normalizeCard(card, { now });
     if (normalized.reps === 0 || !normalized.lastReviewedAt) return null;
@@ -591,6 +624,17 @@
     return clamp(1.45 + easeRelief * 0.85 + cleanRecall * 0.55, 1.18, 2.45);
   }
 
+  /**
+   * Decides the next interval. The ladder (RETENTION_POLICY.intervals) sets the
+   * range; the FSRS-style growth (old stability x stabilityGrowth) only moves the
+   * interval inside that range:
+   * - "again", or a fresh card not graded "easy": the 5-minute step.
+   * - Stages 0-2 (learning) and not "hard": exactly the ladder step.
+   * - "hard": the adaptive value, capped at 82 % of the current step, so a shaky
+   *   mature card comes back sooner than its ladder step.
+   * - Otherwise: the adaptive value, clamped between the previous and the next
+   *   ladder step, so one review never moves more than one step past the ladder.
+   */
   function boundedAdaptiveIntervalMs({ grade, nextStage, oldStabilityMs, difficulty, retrievability, wasFresh }) {
     const intervals = RETENTION_POLICY.intervals;
     if (grade === "again") return intervals[0].ms;
@@ -609,6 +653,25 @@
     return Math.round(clamp(adaptive, lowerBound, upperBound));
   }
 
+  /**
+   * Applies one graded review and returns the updated card with the numbers the UI
+   * and history need. Pure: the input card is not mutated and nothing is stored.
+   *
+   * Pass a card from `normalizeCard`: `stage`, `reps` and `lastGrade` are read before
+   * normalization, so a raw card without a numeric stage can throw.
+   * grade is "again" | "hard" | "good" | "easy":
+   * - A fresh card (never reviewed, or last graded "again") stays on stage 0 unless
+   *   graded "easy", which moves it to stage 1.
+   * - "again" resets to stage 0, lowers ease and counts a lapse; the second lapse
+   *   sets `needsRewrite`. "good" climbs one step, "easy" two, "hard" keeps the stage.
+   * - The interval always comes from `boundedAdaptiveIntervalMs`. The per-grade
+   *   `intervalMs` assignments below are overwritten and do not affect the result.
+   *
+   * The returned card has `stabilityDays` set to the chosen interval, `dueAt` =
+   * now + interval, history capped at the last 40 entries and responseTimes at 20.
+   * `options.proofGate` / `options.expertDrillGate` are stored as summaries in the
+   * history entry; they do not change the schedule.
+   */
   function scheduleReview(card, grade, options = {}) {
     const now = options.now ?? Date.now();
     const responseMs = options.responseMs ?? 0;
@@ -791,6 +854,12 @@
     return [...new Set(raw.map(stemToken).filter((token) => !TOKEN_STOPWORDS.has(token)))];
   }
 
+  /**
+   * Share of the expected answer tokens (from back, context and tags; lower-cased,
+   * crudely stemmed, stopwords removed) that appear in the learner's scratchpad.
+   * score is 0 for an empty scratchpad and null when the card has no expected
+   * tokens; the proof gate treats null as covered.
+   */
   function answerCoverage(card, scratchpad = "") {
     const normalized = normalizeCard(card || {});
     const scratchTokens = new Set(textTokens(scratchpad));
@@ -852,6 +921,15 @@
     };
   }
 
+  /**
+   * Checks whether a recall is strong enough to trust at the week or month step.
+   * Inactive below stage 4 (the 1-week step); the week gate applies to stages 4-5 and
+   * the month gate from stage 6 (thresholds in RETENTION_POLICY.gates). Passes only
+   * when trace, coverage, transfer and pace all pass. A responseMs of 0 counts as
+   * unknown pace and passes.
+   * Advisory only: it returns a verdict and a grading recommendation and never
+   * changes the card. See tests "proof gate only activates for week and month memory cards".
+   */
   function proofGate(input = {}) {
     const card = normalizeCard(input.card || {}, { now: input.now ?? Date.now() });
     const scratchpad = String(input.scratchpad || "").trim();
@@ -1541,6 +1619,14 @@
     };
   }
 
+  /**
+   * Mastery score for one deck, in [0, 1]:
+   *   0.52 x stage progress + 0.28 x 7-day accuracy + 0.14 x (1 - lapse rate)
+   *   + 0.06 x answer speed (45 s or slower scores 0) - 0.12 x share needing rewrite.
+   * With no reviews in the last 7 days, accuracy falls back to stage progress, and
+   * with no response times speed counts as 0.5.
+   * Expects normalized cards (masteryPath normalizes before calling).
+   */
   function deckMetrics(cards, now = Date.now()) {
     if (!cards.length) {
       return {
@@ -1661,6 +1747,11 @@
     return requirements.sort((a, b) => a.priority - b.priority);
   }
 
+  /**
+   * Places a deck on the MASTERY_LEVELS ladder. The current level is the last level
+   * whose requirements all hold; blockers are the unmet requirements of the next
+   * incomplete level, sorted by priority, so `primaryBlocker` is the one to fix first.
+   */
   function masteryPath(deck, cards, now = Date.now()) {
     const normalizedCards = cards.map((card) => normalizeCard(card, { now }));
     const metrics = deckMetrics(normalizedCards, now);
@@ -2646,6 +2737,12 @@
     };
   }
 
+  /**
+   * Capture gate for a new card: one atomic prompt (front 18-180 chars), an answer
+   * (back 20-700), a source (3+), context (10+) and a prompt type.
+   * Expects front, back, source and context as strings; a missing field throws.
+   * See test "quality gate requires an atomic prompt, answer, source, context and type".
+   */
   function qualityGateChecks(payload) {
     return [
       {
@@ -2675,6 +2772,7 @@
     return qualityGateChecks(payload).every((check) => check.ok);
   }
 
+  // Recall gate before reveal: the learner must have spoken or written at least four characters.
   function recallIsReady(input = {}) {
     const scratchpad = String(input.scratchpad || "").trim();
     return Boolean(input.spoken) || scratchpad.length >= 4;

@@ -1,3 +1,21 @@
+/*
+ * Family Game domain core: the only write boundary for the two-player game
+ * (family-game.html) and the practice pilot (family-practice.html).
+ *
+ * Every change is a function that takes a snapshot and returns a new one
+ * (startMatch, applyAttempt, completeTurn, abandonMatch); input snapshots are
+ * never mutated. family-game-app.js only renders and persists what these return.
+ * Learner memory has one row per learner x learning essential, shared across
+ * matches and opponents. Attempts, scores, the match queue and variant usage are
+ * separate append-only lanes; scoring never touches learner memory.
+ * FamilyGameRetentionAdapter is the only path from a game outcome to a memory
+ * change, and it uses RetentionCore.scheduleReview.
+ * Rules and evidence: docs/family-game-mvp-evidence.md.
+ *
+ * Loads with RetentionCore and a content object: require() in Node, or
+ * window.createFamilyGameCore(content) in the browser. window.FamilyGameCore is
+ * built at once only when FAMILY_GAME_CONTENT is already on the page.
+ */
 (function initFamilyGameCore(root, factory) {
   if (typeof module === "object" && module.exports) {
     const retentionCore = require("../../core/retention-core.js");
@@ -111,6 +129,12 @@
     };
   }
 
+  /**
+   * Validates and deep-copies a snapshot. Throws on a missing or incomplete snapshot,
+   * on two memory rows for the same learner x essential, and on any opponent, match,
+   * device, variant or score field inside learner memory: memory describes the
+   * learner alone, so it can be shared across opponents.
+   */
   function normalizeState(raw, now = Date.now()) {
     if (!raw || typeof raw !== "object") throw new Error("Invalid Family Game snapshot");
     const state = clone(raw);
@@ -135,6 +159,16 @@
     return state;
   }
 
+  /**
+   * Whole-snapshot persistence over a localStorage-like adapter; three keys:
+   * <storeKey>, <storeKey>-staging and <storeKey>-backup.
+   * save(): writes the full snapshot to staging, copies the current primary to backup,
+   * writes primary, then removes staging. A failed save returns { ok: false, error }
+   * instead of throwing and never leaves part of a snapshot, so no partial learner
+   * write (test "whole-snapshot storage falls back without partial learner writes").
+   * load(): uses the first of primary, staging, backup that parses and validates;
+   * otherwise a fresh seed. reset() removes all three keys.
+   */
   function createGameStorage(options = {}) {
     const storage = options.storage;
     const storeKey = options.storeKey || STORE_KEY;
@@ -202,6 +236,8 @@
     return Content.variants.find((variant) => variant.essentialId === essentialId && variant.variantRole === role) || null;
   }
 
+  // Due essentials for the learner, most overdue first. A promoted essential is no longer
+  // due, so all its variants drop out of the next match, against any opponent.
   function eligibleFamilies(state, options = {}) {
     const learnerProfileId = options.learnerProfileId || "profile-casper";
     const now = options.now ?? Date.now();
@@ -215,6 +251,12 @@
       .sort((a, b) => a.memory.dueAt - b.memory.dueAt || a.memory.reps - b.memory.reps || a.family.essentialId.localeCompare(b.family.essentialId));
   }
 
+  /**
+   * Starts a match on up to `matchSize` due essentials (default 4), two turns each:
+   * child_core for the learner, adult_challenge for the challenger.
+   * Throws ACTIVE_MATCH_EXISTS (the local MVP allows one active match per learner),
+   * UNKNOWN_PROFILE or NO_DUE_ESSENTIALS. Returns { match (a copy), state }.
+   */
   function startMatch(inputState, options = {}) {
     const state = normalizeState(inputState, options.now ?? Date.now());
     const now = options.now ?? Date.now();
@@ -275,6 +317,8 @@
     return { match: clone(match), state };
   }
 
+  // A comeback waits until `eligibleAfterTurn` (two turns after the miss) so the retry is
+  // not immediate; once the planned turns are done, pending comebacks run anyway.
   function getCurrentTurn(state, matchId = state.activeMatchId) {
     const match = getMatch(state, matchId);
     if (!match || match.status !== "in_progress") return null;
@@ -286,6 +330,9 @@
     return pendingComeback ? clone(pendingComeback.turn) : null;
   }
 
+  // A temporary RetentionCore card built from a memory row so scheduleReview can be reused.
+  // reps >= 1 and lastGrade "good" make scheduleReview treat it as a reviewed card; a fresh
+  // card would stay on stage 0 and fail the adapter's one-step promotion check.
   function projectionCard(memory, now) {
     const stageInterval = RetentionCore.INTERVALS[Math.min(memory.stage, RetentionCore.INTERVALS.length - 1)];
     return {
@@ -309,6 +356,15 @@
     };
   }
 
+  /**
+   * preview(memory, semanticOutcome, { now, wasDue }) returns the next memory row
+   * without writing it.
+   * - No-promote outcomes return the row unchanged.
+   * - Promotion outcomes require wasDue and advance exactly one stage via a "good" review.
+   * - RELEARNING_HOLD uses a "hard" review, keeps the stage (a mature card is not reset)
+   *   and must be due after now and within one stage interval.
+   * If RetentionCore's result breaks these rules it throws instead of returning it.
+   */
   const FamilyGameRetentionAdapter = {
     preview(memory, semanticOutcome, context = {}) {
       const now = context.now ?? Date.now();
@@ -335,11 +391,22 @@
     }
   };
 
+  // Idempotency fingerprint: the same attemptId with the same fields is a replay; with
+  // different fields it is a conflict (test "same attempt replay is a no-op and changed payload is rejected").
   function stableAttemptPayload(attempt) {
     const keys = ["actorProfileId", "adjudicationMode", "attemptKind", "essentialId", "helpStatus", "matchId", "priorAttemptId", "priorOutcome", "turnId", "variantId", "variantRole", "verdict", "wasDue"];
     return JSON.stringify(keys.reduce((payload, key) => ({ ...payload, [key]: attempt[key] ?? null }), {}));
   }
 
+  /**
+   * Decides whether an attempt may change learner memory; null means it may not.
+   * Only the learner's own attempts count, and disputed or unsure verdicts never do.
+   * Revealed and aided attempts and wrong answers do not promote. A correct answer
+   * promotes one stage only if the essential was due. A correct comeback after a
+   * failed open attempt is RELEARNING_HOLD. A correct steal promotes only if due and
+   * if the content's memoryPolicy allows it (the practice pack sets
+   * stealWritesLearnerMemory to false).
+   */
   function outcomeForAttempt(attempt, match) {
     const learnerAttempt = attempt.actorProfileId === match.learnerProfileId;
     if (!learnerAttempt || attempt.verdict === "disputed" || attempt.verdict === "unsure") return null;
@@ -357,6 +424,7 @@
     return attempt.wasDue ? SEMANTIC_OUTCOMES.PROMOTE_ONE : null;
   }
 
+  // Score only; never read by the memory path. Defaults apply when the content has no scoringPolicy.
   function pointsForAttempt(attempt, match) {
     const scoring = Content.scoringPolicy || {};
     if (attempt.verdict === "disputed" || attempt.verdict === "unsure") return { points: 0, reason: "house_rule" };
@@ -379,6 +447,18 @@
     return { points: scoring.childUnaidedCorrect ?? 2, reason: "open_correct" };
   }
 
+  /**
+   * Applies one judged attempt to a copy of the state and returns
+   * { attemptEvent, reviewEvent, scoreEvent, semanticOutcome, state }. The caller persists `state`.
+   * Idempotent per attemptId: a replay with the same payload returns the stored events
+   * with duplicate: true and writes nothing; a changed payload throws IDEMPOTENCY_CONFLICT.
+   * Always appends an attempt, a score event and variant usage. Appends a review event
+   * and rewrites the memory row only when outcomeForAttempt returns an outcome.
+   * Queues a comeback turn after aided, revealed or failed attempts, and after a steal
+   * when the content's stealPolicy asks for it.
+   * Throws MATCH_NOT_ACTIVE, UNKNOWN_ATTEMPT_ACTOR, INVALID_VARIANT_IDENTITY,
+   * ACTOR_NOT_IN_MATCH or LEARNER_MEMORY_NOT_FOUND.
+   */
   function applyAttempt(inputState, rawAttempt) {
     const now = rawAttempt.occurredAt ?? Date.now();
     const state = normalizeState(inputState, now);
@@ -514,6 +594,8 @@
     return { attemptEvent, reviewEvent, scoreEvent, semanticOutcome, state };
   }
 
+  // Marks a turn done (once per turnId), consumes its comeback, and completes the match
+  // when no turn is left.
   function completeTurn(inputState, turnId, now = Date.now()) {
     const state = normalizeState(inputState, now);
     const match = getMatch(state);

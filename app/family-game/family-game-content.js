@@ -1,3 +1,8 @@
+/*
+ * Question content for the Family Game (3rd grade pilot): learning essentials, each
+ * with four role variants (child core, adult challenge, help, comeback). Plain data,
+ * exposed as window.FAMILY_GAME_CONTENT.
+ */
 (function initFamilyGameContent(root, factory) {
   const content = factory();
   if (typeof module === "object" && module.exports) module.exports = content;

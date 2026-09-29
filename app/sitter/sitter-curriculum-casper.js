@@ -1,3 +1,8 @@
+/*
+ * Casper card pack (3rd-grade level), chosen with ?pakke=casper in sitter.html and
+ * exposed as window.SITTER_CURRICULUM_CASPER. Plain data with its own storage key;
+ * saved progress is keyed by card id, so changing an id resets that card.
+ */
 const SITTER_CURRICULUM_CASPER = {
   version: 3,
   title: "Sitter — Casper-pakken",

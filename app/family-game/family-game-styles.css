@@ -1,3 +1,4 @@
+/* Family Game and practice-pilot styles on top of the base; loaded by family-game.html and family-practice.html. */
 @import url("family-game-base.css");
 
 body { padding-bottom: env(safe-area-inset-bottom); }

@@ -1,3 +1,9 @@
+/*
+ * Adapter from the practice pack JSON in content/ to the content shape
+ * FamilyGameCore expects: families, four role variants each, policies, UI copy and
+ * the storage key sitter-casper-family-practice-v1. Pure; exposed as
+ * window.FamilyPracticeContent and to tests via require().
+ */
 (function initFamilyPracticeContent(root, factory) {
   const runtime = factory();
   if (typeof module === "object" && module.exports) module.exports = runtime;

@@ -1,3 +1,19 @@
+/*
+ * Sitter student app (sitter.html): package choice, local state, answer checking
+ * and the screen flow for one child on one device.
+ *
+ * Data flow: localStorage -> loadSitterState (merged with the current card pack)
+ * -> sitterState.data -> a session queue of due cards -> evaluateSitterAnswer
+ * grades the typed answer -> SitterMechanics.scheduleReview -> pendingResult ->
+ * commitSitterResult writes the card -> saveSitterState.
+ *
+ * Boundaries: progress stays in this browser's localStorage, one key per package.
+ * RetentionCore is used only for normalizeCard; the ladder lives in
+ * sitter-mechanics.js. window.SitterTest exposes internals to
+ * tests/sitter-mvp.test.js and tests/sitter-casper.test.js.
+ */
+// ?pakke=casper selects the Casper pack only if that pack loaded; otherwise the
+// standard pack is used (test "pakke=casper falls back to standard when the Casper pack is missing").
 const SITTER_PACKAGE = (() => {
   try {
     const search = window.location && window.location.search ? window.location.search : "";
@@ -7,6 +23,10 @@ const SITTER_PACKAGE = (() => {
   }
   return "standard";
 })();
+// One key per package, so the two progress sets never mix. The Casper key is v3: pack
+// version 3 starts fresh and leaves sitter-casper-v2 untouched
+// (test "Casper v3 starts fresh without deleting the previous pilot progress").
+// Older Hukomm progress under the legacy key is read once for migration, never written or deleted.
 const SITTER_STORAGE_KEY = SITTER_PACKAGE === "casper" ? "sitter-casper-v3" : "sitter-mvp-v1";
 const SITTER_LEGACY_STORAGE_KEY = "casper-quest-retention-v1";
 const SitterCore = window.RetentionCore;
@@ -183,6 +203,8 @@ function sitterCardMatchesActiveGrade(card) {
   return grades.map(Number).includes(SITTER_GRADE_LEVEL);
 }
 
+// Card n in the pack is due n x 19 s before createdAt, so on a fresh deck the later cards
+// count as the most overdue and fill the first session.
 function createSitterCard(seed, createdAt, index = 0) {
   return SitterCore.normalizeCard(
     {
@@ -218,6 +240,8 @@ function createSitterSeedState(createdAt = Date.now()) {
   };
 }
 
+// Progress fields come from the saved card; content fields always come from the current
+// pack, so a pack update fixes wording and answers without resetting progress.
 function mergeSitterSeed(card, seed) {
   return {
     ...seed,
@@ -237,6 +261,13 @@ function mergeSitterSeed(card, seed) {
   };
 }
 
+/**
+ * Rebuilds saved state against the current pack. Returns a fresh seed if `parsed`
+ * has no cards array. Saved cards whose id is no longer in the pack are dropped,
+ * so renaming a card id loses its progress; new pack cards are added fresh.
+ * schemaVersion below 3 means stages from RetentionCore's nine-step ladder: they
+ * are mapped with migrateLegacyStage, and any saved active session is discarded.
+ */
 function normalizeSitterState(parsed, migratedFrom = null) {
   if (!parsed || !Array.isArray(parsed.cards)) return createSitterSeedState();
   const timestamp = Date.now();
@@ -262,6 +293,13 @@ function normalizeSitterState(parsed, migratedFrom = null) {
   };
 }
 
+/**
+ * Load order: this package's key, then (standard package only) the legacy
+ * casper-quest-retention-v1 key, which is migrated and written to the new key
+ * while the legacy value is left in place, then a fresh seed.
+ * A value that fails to parse is logged and replaced by a fresh seed in memory;
+ * the stored value is overwritten on the next save.
+ */
 function loadSitterState() {
   try {
     const current = localStorage.getItem(SITTER_STORAGE_KEY);
@@ -278,6 +316,12 @@ function loadSitterState() {
   return createSitterSeedState();
 }
 
+/**
+ * Writes the whole state under SITTER_STORAGE_KEY. An unfinished session and its
+ * pendingResult are saved with it, so a reload resumes the same question or result
+ * (test "Sitter persists a pending result and resumes it after reload").
+ * localStorage errors, such as a full quota, are not caught here.
+ */
 function saveSitterState() {
   sitterState.data = {
     ...sitterState.data,
@@ -334,6 +378,18 @@ function sitterContainsPhrase(answer, phrase) {
   return new RegExp(`(^| )${escapeSitterRegExp(normalizedPhrase)}( |$)`).test(normalizedAnswer);
 }
 
+/**
+ * Grades a typed answer against the card's answer data and returns
+ * { grade, label, message, tone }; `grade` is what SitterMechanics.scheduleReview takes.
+ * - Empty answer: "again".
+ * - answerMode "number": "good" if any number in the answer equals an accepted
+ *   number (comma or dot decimals), else "again".
+ * - Text: "good" if an accepted answer matches the whole answer or appears as a whole
+ *   phrase (accepted answers of one or two characters must match the whole answer).
+ *   Otherwise keywords decide: all requiredKeywords present and at least
+ *   minKeywordHits of answerKeywords (default: all) gives "good"; any keyword hit
+ *   gives "hard" ("Nesten"); no hit gives "again".
+ */
 function evaluateSitterAnswer(card, scratchpad) {
   const answer = String(scratchpad || "").trim();
   const accepted = Array.isArray(card.acceptedAnswers) ? card.acceptedAnswers : [];
@@ -1037,6 +1093,8 @@ function startSitterSession() {
   window.setTimeout(() => sitterEls.answer.focus(), 50);
 }
 
+// Grades and schedules, but does not write the card yet: the result is held as
+// pendingResult and saved, and commitSitterResult applies it when the child moves on.
 function checkSitterAnswer() {
   const card = sitterSessionCard();
   const answer = sitterEls.answer.value.trim();
@@ -1052,6 +1110,8 @@ function checkSitterAnswer() {
   setSitterScreen("result");
 }
 
+// The only place a scheduled card replaces the stored card. A missed card is put back
+// two places later in this session; a correct one is marked resolved.
 function commitSitterResult() {
   const pending = sitterState.pendingResult;
   const session = sitterState.session;

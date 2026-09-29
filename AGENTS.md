@@ -46,9 +46,12 @@ Familiespill og practice-pilot:
 Oppsett:
 
 - `package.json` — skriptene `check`, `test` og `content:validate`; ingen avhengigheter.
+- `package-lock.json` — låsefil for `package.json`; liten fordi det ikke er avhengigheter.
 - `vercel.json` — hvilke filer Vercel serverer statisk, og at `/` går til `sitter.html`.
 - `.gitignore` — ignorerte filer (miljøfiler, `.vercel`, skrapte filer, skrape-cache og `node_modules/`).
 - `.env.example` — mal for miljøvariabler (`TAVILY_API_KEY`).
+- `.prettierrc` — formateringsoppsett som matcher koden slik den står (semikolon, doble anførselstegn, 100 kolonner).
+- `.editorconfig` — editor-standard: UTF-8, LF, to mellomrom, fjernet mellomrom på linjeslutt, linjeskift til slutt.
 
 Dokumenter:
 

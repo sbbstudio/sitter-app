@@ -9,6 +9,7 @@ Merkbare endringer i Sitter står her, nyeste først. Formatet følger [Keep a C
 - `AGENTS.md` og `CLAUDE.md`, så repoet forklarer mappene, hver rotfil og de lokale reglene.
 - `docs/decisions/`, som starter med beslutningen om en statisk app servert fra roten uten byggetrinn.
 - PR-mal og CODEOWNERS.
+- `.prettierrc`, `.editorconfig` og `package-lock.json`.
 
 ### Endret
 

@@ -150,7 +150,7 @@ Sitter deler arkitektur med en mer avansert recall-motor som er i privat drift �
 └─────────────────────────────────────────────────────────┘
 ```
 
-Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Ingen nettverkskall, ingen server, ingen sporbarhet utenfor enheten.
+Kjernen er frikoblet fra UI: samme scheduler driver alle tre appene, og all state er lokal. Ingen kall utenfor egen origin, ingen server, ingen sporbarhet utenfor enheten.
 
 ---
 

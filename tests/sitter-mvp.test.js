@@ -3,11 +3,11 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
-const Core = require("../retention-core.js");
-const Mechanics = require("../sitter-mechanics.js");
+const Core = require("../core/retention-core.js");
+const Mechanics = require("../app/sitter/sitter-mechanics.js");
 
 function loadSitterCurriculum() {
-  const source = fs.readFileSync(path.join(__dirname, "..", "sitter-curriculum.js"), "utf8");
+  const source = fs.readFileSync(path.join(__dirname, "..", "app/sitter/sitter-curriculum.js"), "utf8");
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox, { filename: "sitter-curriculum.js" });
   return sandbox.window.SITTER_CURRICULUM;
@@ -34,7 +34,7 @@ function fakeElement(dataset = {}) {
 
 function loadSitterApp(legacyState = null, currentState = null) {
   const curriculum = loadSitterCurriculum();
-  const source = fs.readFileSync(path.join(__dirname, "..", "sitter-app.js"), "utf8");
+  const source = fs.readFileSync(path.join(__dirname, "..", "app/sitter/sitter-app.js"), "utf8");
   const elements = new Map();
   const screens = ["home", "session", "result", "complete", "memory", "history", "followup", "empty"]
     .map((screenName) => fakeElement({ screenName }));
@@ -98,7 +98,7 @@ test("Sitter MVP exposes the eight agreed product surfaces", () => {
 
 test("Sitter explains the learning loop without requiring spaced-repetition knowledge", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "sitter.html"), "utf8");
-  const styles = fs.readFileSync(path.join(__dirname, "..", "sitter-styles.css"), "utf8");
+  const styles = fs.readFileSync(path.join(__dirname, "..", "app/sitter/sitter-styles.css"), "utf8");
 
   assert.match(html, /Du svarer\. Vi passer på resten\./);
   assert.match(html, /Oppgaven kommer tilbake/);
@@ -109,7 +109,7 @@ test("Sitter explains the learning loop without requiring spaced-repetition know
   assert.match(html, /id="premiumSkip"/);
   assert.match(html, /class="premium-transformation"/);
   assert.match(html, /id="resultNextReviewLabel"/);
-  assert.match(html, /sitter-mechanics\.js/);
+  assert.match(html, /app\/sitter\/sitter-mechanics\.js/);
   assert.match(html, /id="memoryWeek"/);
   assert.match(html, /class="subject-earmarks" id="homeSubjects"/);
   assert.match(html, /<article class="start-card"[\s\S]*id="startSitterSession"/);
@@ -293,7 +293,7 @@ test("Sitter makes a single subject the identity of the Home hero", () => {
 });
 
 test("Sitter flips the Home hero as a five-stage 3D progress card", () => {
-  const appSource = fs.readFileSync(path.join(__dirname, "..", "sitter-app.js"), "utf8");
+  const appSource = fs.readFileSync(path.join(__dirname, "..", "app/sitter/sitter-app.js"), "utf8");
   const { api, elements } = loadSitterApp();
   const stages = api.homeStageSummary();
 

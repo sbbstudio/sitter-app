@@ -3,8 +3,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
-const Core = require("../retention-core.js");
-const Mechanics = require("../sitter-mechanics.js");
+const Core = require("../core/retention-core.js");
+const Mechanics = require("../app/sitter/sitter-mechanics.js");
 
 function loadCurriculumFile(filename, globalName) {
   const source = fs.readFileSync(path.join(__dirname, "..", filename), "utf8");
@@ -33,11 +33,11 @@ function fakeElement(dataset = {}) {
 }
 
 function loadSitterApp({ search = "", includeCasper = true, initialStorage = [] } = {}) {
-  const curriculum = loadCurriculumFile("sitter-curriculum.js", "SITTER_CURRICULUM");
+  const curriculum = loadCurriculumFile("app/sitter/sitter-curriculum.js", "SITTER_CURRICULUM");
   const casperCurriculum = includeCasper
-    ? loadCurriculumFile("sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER")
+    ? loadCurriculumFile("app/sitter/sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER")
     : null;
-  const source = fs.readFileSync(path.join(__dirname, "..", "sitter-app.js"), "utf8");
+  const source = fs.readFileSync(path.join(__dirname, "..", "app/sitter/sitter-app.js"), "utf8");
   const elements = new Map();
   const screens = ["home", "session", "result", "complete", "memory", "history", "followup", "empty"]
     .map((screenName) => fakeElement({ screenName }));
@@ -83,8 +83,8 @@ function loadSitterApp({ search = "", includeCasper = true, initialStorage = [] 
 }
 
 test("Casper curriculum is a valid, answerable 3rd grade package", () => {
-  const casper = loadCurriculumFile("sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER");
-  const standard = loadCurriculumFile("sitter-curriculum.js", "SITTER_CURRICULUM");
+  const casper = loadCurriculumFile("app/sitter/sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER");
+  const standard = loadCurriculumFile("app/sitter/sitter-curriculum.js", "SITTER_CURRICULUM");
 
   assert.deepEqual(Array.from(casper.gradeLevels), [3]);
   assert.equal(casper.version, 3);
@@ -118,7 +118,7 @@ test("Casper curriculum is a valid, answerable 3rd grade package", () => {
 });
 
 test("Casper v3 covers the agreed foundation before curriculum breadth", () => {
-  const casper = loadCurriculumFile("sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER");
+  const casper = loadCurriculumFile("app/sitter/sitter-curriculum-casper.js", "SITTER_CURRICULUM_CASPER");
   const ids = new Set(casper.cards.map((card) => card.id));
   const requiredFoundation = [
     "casper-matte-tallinje-førti",

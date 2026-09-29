@@ -1,6 +1,6 @@
 (function initFamilyGameCore(root, factory) {
   if (typeof module === "object" && module.exports) {
-    const retentionCore = require("./retention-core.js");
+    const retentionCore = require("../../core/retention-core.js");
     const core = factory(retentionCore, require("./family-game-content.js"));
     core.createForContent = (content) => factory(retentionCore, content);
     module.exports = core;

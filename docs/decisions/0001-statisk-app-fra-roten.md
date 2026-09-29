@@ -2,7 +2,7 @@
 
 **Dato:** 2026-09-29
 
-**Status:** Vedtatt
+**Status:** Vedtatt; plasseringen i roten er erstattet av 0002
 
 ## Beslutning
 
@@ -23,3 +23,4 @@ Filene som er gjennomgått i en PR, er de samme filene som serveres, og kjernen 
 
 - App-filene blir liggende i roten, fordi de offentlige URL-ene og de relative stiene mellom sidene peker dit. Derfor har roten flere enn 15 filer; `AGENTS.md` forklarer hver av dem.
 - `vercel.json` serverer også `docs/**/*.md` og `content/**/*.json`, så beslutningene i denne mappa er offentlige på den publiserte siden.
+- 0002 flyttet kildefilene (JS og CSS) til `core/` og `app/`; de tre HTML-sidene ligger fortsatt i roten.

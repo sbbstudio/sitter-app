@@ -2,8 +2,8 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const DefaultCore = require("../family-game-core.js");
-const Runtime = require("../family-practice-content.js");
+const DefaultCore = require("../app/family-game/family-game-core.js");
+const Runtime = require("../app/family-practice/family-practice-content.js");
 
 const root = path.resolve(__dirname, "..");
 const pack = JSON.parse(fs.readFileSync(path.join(root, "content/packs/no/grade-4/casper-family-practice-v1.json"), "utf8"));
@@ -144,13 +144,13 @@ test("practice wording keeps assessment precise and culturally respectful", () =
 test("practice page is a separate mobile entry with its own loader and navigation", () => {
   const html = fs.readFileSync(path.join(root, "family-practice.html"), "utf8");
   const defaultHtml = fs.readFileSync(path.join(root, "family-game.html"), "utf8");
-  assert.match(html, /family-practice-content\.js/);
-  assert.match(html, /family-practice-bootstrap\.js/);
+  assert.match(html, /app\/family-practice\/family-practice-content\.js/);
+  assert.match(html, /app\/family-practice\/family-practice-bootstrap\.js/);
   assert.match(html, /Sitter Familiespill/);
   assert.match(html, /Sitter Solo · Casper/);
   assert.doesNotMatch(html, /family-game-content\.js/);
   assert.match(defaultHtml, /family-practice\.html/);
-  const app = fs.readFileSync(path.join(root, "family-game-app.js"), "utf8");
+  const app = fs.readFileSync(path.join(root, "app/family-game/family-game-app.js"), "utf8");
   assert.ok(app.indexOf("Lås før fasit") < app.indexOf("Kanonisk fasit"));
   assert.match(app, /Dette måler ikke hvem som er smartest|Poengene viser kampen, ikke hvem som er smartest/);
 });

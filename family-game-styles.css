@@ -1,4 +1,4 @@
-@import url("docs/prototypes/family-game-v02/styles.css");
+@import url("family-game-base.css");
 
 body { padding-bottom: env(safe-area-inset-bottom); }
 .wordmark { text-decoration: none; }

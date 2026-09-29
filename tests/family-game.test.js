@@ -268,7 +268,7 @@ test("mobile entry point is oral-only and loads the approved Family Game boundar
   assert.match(app, /Ingen antallsvelger/);
   assert.match(app, /consensus/);
   assert.match(app, /game_master/);
-  assert.match(css, /docs\/prototypes\/family-game-v02\/styles\.css/);
+  assert.match(css, /family-game-base\.css/);
 });
 
 test("production UI exposes help, reveal, steal, comeback and learning-first result copy", () => {

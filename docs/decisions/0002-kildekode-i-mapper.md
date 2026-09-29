@@ -16,7 +16,6 @@ Alternativet var å la alt ligge i roten, slik 0001 beskrev. Det ble forkastet f
 
 ## Kilde
 
-- Notion: https://app.notion.com/p/3ea33beeb21581dfa8a6cac2fc259ca9
 - `vercel.json`: `builds` serverer `*.html` i roten, og `/` går til `/sitter.html`. Kildefilene serveres nå fra `core/*.js`, `app/**/*.js` og `app/**/*.css`.
 - De tre HTML-sidene laster kildefilene med relative `<script src>` og `<link href>`, så en ny mappe krever bare nye stier der.
 

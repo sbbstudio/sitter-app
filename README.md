@@ -6,6 +6,29 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://img.shields.io/badge/tests-109%20passing-brightgreen)]()
 
+## In English
+
+Sitter is a spaced-repetition app for children. It is local-first: no server, no database, no login and no tracking. Progress stays in the browser's `localStorage`.
+
+**Status: Alpha.** A more advanced Beta engine exists in private use and is kept private on purpose. This repository shows the product, not the platform.
+
+What this repository contains:
+
+- **Sitter (student)**: a daily practice flow on mobile for 4th grade.
+- **Sitter Family Game**: a spoken two-player game for a child and an adult on one device.
+- **Practice pilot**: "Are you smarter than your child?", an adult–child quiz for 4th grade.
+- **`retention-core.js`**: one shared scheduler file with no DOM dependency. All three apps load it, and it is tested in Node without a browser.
+
+Run it:
+
+- `npm test` runs 109 tests with Node's built-in test runner (CI uses Node 22).
+- Serve the folder with `python3 -m http.server 4173` and open `http://localhost:4173/sitter.html`.
+- Live demo, no login: https://sitter-app-review.vercel.app/sitter.html
+
+MIT licensed. No dependencies and no build step: plain JavaScript and HTML.
+
+The rest of this README is in Norwegian.
+
 En statisk, lokal-først læringsapp for varig recall, bygget for barn og familier:
 
 - **Sitter (elev)**: en mobilflyt for 4. klasse, der et barn øver daglig uten å måtte skrive.

@@ -50,7 +50,7 @@ Oppsett:
 - `vercel.json` — hvilke filer Vercel serverer statisk, og at `/` går til `sitter.html`.
 - `.gitignore` — ignorerte filer (miljøfiler, `.vercel`, skrapte filer, skrape-cache og `node_modules/`).
 - `.env.example` — mal for miljøvariabler (`TAVILY_API_KEY`).
-- `.prettierrc` — formateringsoppsett som matcher koden slik den står (semikolon, doble anførselstegn, 100 kolonner).
+- `.prettierrc` — formateringsoppsett som følger kodens semikolon og doble anførselstegn. Koden er ikke kjørt gjennom Prettier.
 - `.editorconfig` — editor-standard: UTF-8, LF, to mellomrom, fjernet mellomrom på linjeslutt, linjeskift til slutt.
 
 Dokumenter:
@@ -72,5 +72,6 @@ Ingen sporede filer over 1 MB. Den største er `retention-core.js`, rundt 100 kB
 - `retention-core.js` deles av alle tre appene; en endring der treffer alle tre.
 - Ikke finn på tall. Testtall, antall spørsmål og lignende i README skal stemme med det kommandoene over skriver ut.
 - Spørsmålsordlyd gjennomgås i `content/` først; se `content/README.md`.
+- Prettier kjøres aldri på hele filer i en PR som endrer logikk; en eventuell omformatering får egen PR.
 - Repoet er offentlig. Ingen API-nøkler eller personopplysninger i repoet.
 - Varige beslutninger skrives i `docs/decisions/`, én fil per beslutning.

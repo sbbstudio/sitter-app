@@ -38,10 +38,10 @@ Tavily layer: `scripts/scrape-learning-assets.mjs` discovers image candidates, t
 
 ## Earlier Style Inspiration
 
-Inspected local repos:
+Inspected two earlier prototypes:
 
-- `/Users/runeoverland/Projects/Caspers_Chest`
-- `/Users/runeoverland/Projects/caspers-chest-v2`
+- Caspers Chest (first version)
+- Caspers Chest v2
 
 Useful patterns to keep selectively:
 
